@@ -6,4 +6,4 @@ gallery-extension for https://pagekit.com/
 - easy image uploading with drag and drop
 - uses uikit-lightbox at the frontend
 
-> this extension has beta status
+**this extension has beta status**
