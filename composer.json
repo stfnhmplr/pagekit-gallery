@@ -1,0 +1,28 @@
+{
+    "name": "shw/gallery",
+    "type": "pagekit-extension",
+    "version": "0.0.1",
+    "title": "Gallery",
+    "description": "A extension to manage your pictures",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stefan Himpler",
+            "email": "info@himpler.com",
+            "homepage": "http://himpler.com"
+        }
+    ],
+    "extra": {
+        "icon": "icon.svg",
+        "scripts": "scripts.php"
+    },
+    "archive": {
+        "exclude": [
+            "node_modules",
+            "!/app"
+        ]
+    },
+    "require": {
+        "intervention/image": "^2.3"
+    }
+}
