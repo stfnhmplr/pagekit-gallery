@@ -43,7 +43,7 @@ class GalleryController
             if (!$gallery = Gallery::where(compact('id'))->related('user', 'images')->first()) {
 
                 if ($id) {
-                    App::abort(404, __('Invalid gallery id.'));
+                    App::abort(404, __('Invalid gallery id'));
                 }
 
                 $gallery = Gallery::create([

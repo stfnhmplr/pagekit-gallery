@@ -161,7 +161,7 @@ return [
 
         'images' => [
             'image_width'   => 1200,
-            'image_height'  => null,
+            'image_height'  => 1200,
             'thumbnail_width'   => 150,
             'thumbnail_height'  => 100
         ]

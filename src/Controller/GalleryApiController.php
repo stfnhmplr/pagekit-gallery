@@ -89,7 +89,7 @@ class GalleryApiController
         }
 
         if (!$data['slug'] = App::filter($data['slug'] ?: $data['title'], 'slugify')) {
-            App::abort(400, __('Invalid slug.'));
+            App::abort(400, __('Invalid slug'));
         }
 
         // user without universal access is not allowed to assign galleries to other users
@@ -99,7 +99,7 @@ class GalleryApiController
 
         // user without universal access can only edit their own galleries
         if(!App::user()->hasAccess('gallery: manage all galleries') && !App::user()->hasAccess('gallery: manage own galleries') && $gallery->user_id !== App::user()->id) {
-            App::abort(400, __('Access denied.'));
+            App::abort(400, __('Access denied'));
         }
 
         $gallery->save($data);

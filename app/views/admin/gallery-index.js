@@ -69,7 +69,7 @@ module.exports = {
         save: function (gallery) {
             this.resource.save({ id: gallery.id }, { gallery: gallery }).then(function () {
                 this.load();
-                this.$notify('Gallery saved.');
+                this.$notify(this.$trans('Gallery saved'));
             });
         },
 
@@ -83,7 +83,7 @@ module.exports = {
 
             this.resource.save({ id: 'bulk' }, { galleries: galleries }).then(function () {
                 this.load();
-                this.$notify('Galleries saved.');
+                this.$notify(this.$trans('Galleries saved'));
             });
         },
 
@@ -91,7 +91,7 @@ module.exports = {
 
             this.resource.delete({ id: 'bulk' }, { ids: this.selected }).then(function () {
                 this.load();
-                this.$notify('Galleries deleted.');
+                this.$notify(this.$trans('Galleries deleted'));
             });
         },
 
@@ -108,7 +108,7 @@ module.exports = {
 
             this.resource.save({ id: 'copy' }, { ids: this.selected }).then(function () {
                 this.load();
-                this.$notify('Galleries copied.');
+                this.$notify(this.$trans('Galleries copied'));
             });
         },
 

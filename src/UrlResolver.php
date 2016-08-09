@@ -39,7 +39,7 @@ class UrlResolver implements ParamsResolverInterface
         }
 
         if (!isset($parameters['slug'])) {
-            App::abort(404, 'Gallery not found.');
+            App::abort(404, 'Gallery not found');
         }
 
         $slug = $parameters['slug'];
@@ -54,7 +54,7 @@ class UrlResolver implements ParamsResolverInterface
         if (!$id) {
 
             if (!$gallery = Gallery::where(compact('slug'))->first()) {
-                App::abort(404, 'Gallerynot found.');
+                App::abort(404, 'Gallery not found');
             }
 
             $this->addCache($gallery);
@@ -75,7 +75,7 @@ class UrlResolver implements ParamsResolverInterface
         if (!isset($this->cacheEntries[$id])) {
 
             if (!$gallery = Gallery::where(compact('id'))->first()) {
-                throw new RouteNotFoundException('Gallery not found!');
+                throw new RouteNotFoundException('Gallery not found');
             }
 
             $this->addCache($gallery);

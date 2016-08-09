@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>{{ 'Image Upload' | trans }}</h2>
-        <h3 class="uk-h1 uk-text-muted uk-text-center" v-if="!gallery.id">{{ 'Please save gallery first.' | trans }}</h3>
+        <h3 class="uk-h1 uk-text-muted uk-text-center" v-if="!gallery.id">{{ 'Please save gallery first' | trans }}</h3>
 
         <div v-else>
             <!-- upload-field -->
@@ -12,7 +12,7 @@
                     <a @click.prevent="triggerFileInput">{{ 'Drag images here or select some' | trans }}</a>
                 </p>
                 <div v-else>
-                    <p class="uk-text-center">{{ files.length }} {{ files.length == 1 ? 'file selected' : 'files selected' | trans }}</p>
+                    <p class="uk-text-center">{{ '{1} %count% File selected|]1,Inf[ %count% Files selected' | transChoice count {count:count} }}</p>
                 </div>
             </div>
 
@@ -23,7 +23,7 @@
             </div>
 
             <!-- images -->
-            <h3 class="uk-h1 uk-text-muted uk-text-center" v-if="!gallery.images">{{ 'No pictures found' | trans }}</h3>
+            <h3 class="uk-h1 uk-text-muted uk-text-center" v-if="!gallery.images">{{ 'No images found' | trans }}</h3>
             <div class="uk-grid uk-grid-width-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-5" v-else>
                 <div class="uk-text-center" v-for="image in gallery.images">
                     <img class="uk-thumbnail" :src="'/storage/shw-gallery/thumbnails/tn_' + image.filename"/>
@@ -76,7 +76,7 @@
                 this.files = e.target.files || e.dataTransfer.files;
                 for(var i=0; i<this.files.length; i++) {
                     if(!_.isUndefined(this.files[i].name) && !(/\.(jpe?g|png)$/i).test(this.files[i].name)) {
-                        this.$notify('Invalid file type. Only *.jpg, *.jpeg or *.png are supported', 'danger');
+                        this.$notify(this.$trans('Invalid file type. Only *.jpg, *.jpeg and *.png are supported'), 'danger');
                         this.reset();
                     }
                 }

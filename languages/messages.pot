@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Pagekit 1.0.0 (hello, messages)\n"
-"POT-Creation-Date: 2013-11-10 19:28+0000\n"
+"Project-Id-Version: Pagekit 1.0.5 (shw/gallery, messages)\n"
+"POT-Creation-Date: 2016-08-09 14:06+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,15 +9,198 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extensions/hello/src/Pagekit/Hello/Controller/DefaultController.php:17
-msgid "Hello %name%"
+msgid "Title"
 msgstr ""
 
-#: extensions/hello/src/Pagekit/Hello/Controller/DefaultController.php:27
-msgid "This Settings page is just for demonstration purposes."
+msgid "Filter by"
 msgstr ""
 
-#: extensions/hello/src/Pagekit/Hello/HelloMenu.php:24
-msgid "Hello World"
+msgid "Photograph"
+msgstr ""
+
+msgid "Image Upload"
+msgstr ""
+
+msgid "{1} %count% File selected|]1,Inf[ %count% Files selected"
+msgstr ""
+
+msgid "Invalid file type. Only *.jpg, *.jpeg or *.png are supported"
+msgstr ""
+
+msgid "Gallery saved"
+msgstr ""
+
+msgid "Galleries saved"
+msgstr ""
+
+msgid "Galleries deleted"
+msgstr ""
+
+msgid "Galleries copied"
+msgstr ""
+
+msgid "Title cannot be blank."
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Please save gallery first"
+msgstr ""
+
+msgid "Drag images here or select some"
+msgstr ""
+
+msgid "Upload"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "No images found"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Event Date"
+msgstr ""
+
+msgid "Slug"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Restrict Access"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Enable Markdown"
+msgstr ""
+
+msgid "Galleries View"
+msgstr ""
+
+msgid "Gallery not found."
+msgstr ""
+
+msgid "Invalid slug"
+msgstr ""
+
+msgid "Access denied"
+msgstr ""
+
+msgid "Access denied."
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Galleries"
+msgstr ""
+
+msgid "Invalid gallery id"
+msgstr ""
+
+msgid "Insufficient User Rights."
+msgstr ""
+
+msgid "Edit Gallery"
+msgstr ""
+
+msgid "Add Gallery"
+msgstr ""
+
+msgid "Gallery Settings"
+msgstr ""
+
+msgid "Gallery not found!"
+msgstr ""
+
+msgid "Published"
+msgstr ""
+
+msgid "Unpublished"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Pending Review"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "No Galleries found"
+msgstr ""
+
+msgid "{0} %count% Galleries|{1} %count% Gallery|]1,Inf[ %count% Galleries"
+msgstr ""
+
+msgid "{1} %count% Gallery selected|]1,Inf[ %count% Galleries selected"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Images"
+msgstr ""
+
+msgid "Site Title"
+msgstr ""
+
+msgid "Permalink"
+msgstr ""
+
+msgid "Numeric"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Day and name"
+msgstr ""
+
+msgid "Month and name"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "Galleries per page"
+msgstr ""
+
+msgid "Default gallery settings"
+msgstr ""
+
+msgid "Thumbnail size"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Image size"
 msgstr ""
 

@@ -35,7 +35,7 @@
 
                     <div class="uk-form-row">
                         <div class="uk-form-row">
-                            <label class="uk-form-label">{{ 'Seitentitel' | trans }}</label>
+                            <label class="uk-form-label">{{ 'Site Title' | trans }}</label>
                             <div class="uk-form-controls uk-form-controls-text">
                                 <p class="uk-form-controls-condensed">
                                     <input type="text" v-model="config.gallery.title" class="uk-form-width-small">
