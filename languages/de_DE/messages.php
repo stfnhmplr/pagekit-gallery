@@ -22,6 +22,7 @@
     "Invalid slug" => "Ungültiger Slug",
     "Access denied" => "Zugriff nicht erlaubt",
     "Copy" => "Kopieren",
+    "Gallery" => "Galerie",
     "Galleries" => "Galerien",
     "Gallery saved" => "Galerie gespeichert",
     "Galleries saved" => "Galerien gespeichert",
@@ -46,7 +47,7 @@
     "No Galleries found"=> "Keine Galerien gefunden",
     "{0} %count% Galleries|{1} %count% Gallery|]1,Inf[ %count% Galleries"=> "{0} %count% Galerien|{1} %count% Galerie|]1,Inf[ %count% Galerien",
     "{1} %count% Gallery selected|]1,Inf[ %count% Galleries selected" => "{1} %count% Galerie ausgewählt|]1,Inf[ %count% Galerien ausgewählt",
-    "{1} %count% File selected|]1,Inf[ %count% Files selected" => "{1} %count% Datei ausgewählt|]1,Inf[ %count% Dateien ausgewählt",
+    "{1} %count% File selected|]1,Inf[ %count% Files selected" => "{1} %count% File selected|]1,Inf[ %count% Files selected",
     "Invalid file type. Only *.jpg, *.jpeg and *.png are supported" => "Ungültiger Dateityp. Nur *.jpg, *.jpeg und *.png werden unterstützt",
     "General" => "Allgemein",
     "Images" => "Bilder",
@@ -62,5 +63,6 @@
     "Thumbnail size" => "Thumbnail Größe",
     "Width" => "Breite",
     "Height" => "Höhe",
-    "Image size" => "Bildgröße"
+    "Image size" => "Bildgröße",
+    "Enter Title" => "Titel eingeben"
 );

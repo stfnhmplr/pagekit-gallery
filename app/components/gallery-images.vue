@@ -12,7 +12,7 @@
                     <a @click.prevent="triggerFileInput">{{ 'Drag images here or select some' | trans }}</a>
                 </p>
                 <div v-else>
-                    <p class="uk-text-center">{{ '{1} %count% File selected|]1,Inf[ %count% Files selected' | transChoice count {count:count} }}</p>
+                    <p class="uk-text-center">{{ '{1} %count% File selected|]1,Inf[ %count% Files selected' | transChoice files.length {count:files.length} }}</p>
                 </div>
             </div>
 

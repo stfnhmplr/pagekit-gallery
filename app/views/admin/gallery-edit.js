@@ -51,7 +51,7 @@ window.Gallery = {
 
                 this.$set('gallery', data.gallery);
 
-                this.$notify('Gallery saved.');
+                this.$notify(this.$trans('Gallery saved'));
 
             }, function (res) {
                 this.$notify(res.data, 'danger');

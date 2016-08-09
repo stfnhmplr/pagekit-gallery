@@ -40,7 +40,7 @@
                 <tr>
                     <th class="pk-table-width-minimum"><input type="checkbox" v-check-all:selected.literal="input[name=id]" number></th>
                     <th class="pk-table-min-width-200" v-order:title="config.filter.order">{{ 'Title' | trans }}</th>
-                    <th class="pk-table-width-100" v-order:photograph="config.filter.order">{{ 'Photograph' | trans }}</th>
+                    <th class="pk-table-width-100">{{ 'Photograph' | trans }}</th>
                     <th class="pk-table-width-100 uk-text-center">
                         <input-filter :title="$trans('Status')" :value.sync="config.filter.status" :options="statusOptions"></input-filter>
                     </th>
@@ -86,7 +86,7 @@
         </table>
     </div>
 
-    <h3 class="uk-h1 uk-text-muted uk-text-center" v-show="galleries && !galleries.length">{{ 'No Galleries found' | trans }}</h3>
+    <h3 class="uk-h1 uk-text-muted uk-text-center" v-show="galleries && !galleries.length">{{ 'No Galleries found.' | trans }}</h3>
 
     <v-pagination :page.sync="config.page" :pages="pages" v-show="pages > 1 || page > 0"></v-pagination>
 
