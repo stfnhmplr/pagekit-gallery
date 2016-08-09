@@ -141,8 +141,14 @@ return [
      */
     'permissions' => [
 
-        // Unique name.
-        // Convention: extension name and speaking name of this permission (spaces allowd)
+        'gallery: manage own galleries' => [
+            'title' => 'Manage own galleries',
+            'description' => 'Create, edit, delete and publish galleries of their own'
+        ],
+        'gallery: manage all galleries' => [
+            'title' => 'Manage all galleries',
+            'description' => 'Create, edit, delete and publish galleries by all users'
+        ],
         'gallery: manage settings' => [
             'title' => 'Manage settings'
         ],

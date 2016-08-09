@@ -59,13 +59,13 @@
                             <p class="uk-form-controls-condensed">
                                 <label>
                                     <input type="radio" v-model="config.permalink.type" value="{year}/{month}/{day}/{slug}">
-                                    {{ 'Day and name' | trans }} <code>{{ '/2014/06/12/sample-post' | trans }}</code>
+                                    {{ 'Day and name' | trans }} <code>{{ '/2014/06/12/sample-gallery' | trans }}</code>
                                 </label>
                             </p>
                             <p class="uk-form-controls-condensed">
                                 <label>
                                     <input type="radio" v-model="config.permalink.type" value="{year}/{month}/{slug}">
-                                    {{ 'Month and name' | trans }} <code>{{ '/2014/06/sample-post' | trans }}</code>
+                                    {{ 'Month and name' | trans }} <code>{{ '/2014/06/sample-gallery' | trans }}</code>
                                 </label>
                             </p>
                             <p class="uk-form-controls-condensed">
@@ -111,11 +111,11 @@
                         <span class="uk-form-label">{{ 'Thumbnail size' | trans }}</span>
                         <div class="uk-form-controls uk-form-controls-condensed">
                             <p>
-                                <input class="uk-form-width-small" v-model="config.image.thumbnail_width" type="number" >
+                                <input class="uk-form-width-small" v-model="config.images.thumbnail_width" type="number" >
                                 {{ 'Width' | trans }} (px)
                             </p>
                             <p>
-                                <input class="uk-form-width-small" v-model="config.image.thumbnail_width" type="number">
+                                <input class="uk-form-width-small" v-model="config.images.thumbnail_width" type="number">
                                 {{ 'Height' | trans }} (px)
                             </p>
                         </div>
@@ -125,11 +125,11 @@
                         <span class="uk-form-label">{{ 'Image size' | trans }}</span>
                         <div class="uk-form-controls uk-form-controls-condensed">
                             <p>
-                                <input class="uk-form-width-small" v-model="config.image.image_width" type="number">
+                                <input class="uk-form-width-small" v-model="config.images.image_width" type="number">
                                 {{ 'Width' | trans }} (px)
                             </p>
                             <p>
-                                <input class="uk-form-width-small" v-model="config.image.image_height" type="number">
+                                <input class="uk-form-width-small" v-model="config.images.image_height" type="number">
                                 {{ 'Height' | trans }} (px)
                             </p>
                         </div>

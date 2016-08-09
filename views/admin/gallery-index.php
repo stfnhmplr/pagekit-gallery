@@ -1,5 +1,4 @@
 <?php $view->script('galleries-index', 'gallery:app/bundle/gallery-index.js', 'vue') ?>
-<?php $view->script('galleries-index', 'gallery:app/bundle/gallery-index.js', 'vue') ?>
 
 <div id="galleries" class="uk-form" v-cloak>
 

@@ -35,7 +35,7 @@ class SiteController
             return $query->where('roles IS NULL')->whereInSet('roles', App::user()->roles, false, 'OR');
         })->related('user');
 
-        if (!$limit = $this->gallery->config('posts.posts_per_page')) {
+        if (!$limit = $this->gallery->config('gallery.galleries_per_page')) {
             $limit = 10;
         }
 
@@ -84,11 +84,14 @@ class SiteController
 
         $description = $gallery->get('meta.og:description');
         if (!$description) {
-            $description = strip_tags($gallery->desciption);
+            $description = strip_tags($gallery->description);
             $description = rtrim(mb_substr($description, 0, 150), " \t\n\r\0\x0B.,") . '...';
         }
 
-        $images = Image::query()->where(['gallery_id' => $gallery->id])->get();
+        if(!$images = Image::query()->where(['gallery_id' => $gallery->id])->get()) {
+            App::abort(404, __('No images found'));
+        }
+
         $image = array_values($images)[0];
 
         return [

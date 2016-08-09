@@ -33,7 +33,7 @@ class GalleryController
 
     /**
      * @Route("/edit", name="gallery/edit")
-     * @Access("blog: manage own posts || blog: manage all posts")
+     * @Access("gallery: manage own galleries || gallery: manage all galleries")
      * @Request({"id": "int"})
      */
     public function editAction($id = 0)
@@ -54,14 +54,14 @@ class GalleryController
             }
 
             $user = App::user();
-            if(!$user->hasAccess('blog: manage all posts') && $gallery->user_id !== $user->id) {
+            if(!$user->hasAccess('gallery: manage all galleries') && $gallery->user_id !== $user->id) {
                 App::abort(403, __('Insufficient User Rights.'));
             }
 
             $roles = App::db()->createQueryBuilder()
                 ->from('@system_role')
                 ->where(['id' => Role::ROLE_ADMINISTRATOR])
-                ->whereInSet('permissions', ['blog: manage all posts', 'blog: manage own posts'], false, 'OR')
+                ->whereInSet('permissions', ['gallery: manage all galleries', 'gallery: manage own galleries'], false, 'OR')
                 ->execute('id')
                 ->fetchAll(\PDO::FETCH_COLUMN);
 
@@ -80,7 +80,7 @@ class GalleryController
                     'gallery'     => $gallery,
                     'statuses' => Gallery::getStatuses(),
                     'roles'    => array_values(Role::findAll()),
-                    'canEditAll' => $user->hasAccess('blog: manage all posts'),
+                    'canEditAll' => $user->hasAccess('gallery: manage all galleries'),
                     'authors'  => $authors
                 ],
                 'gallery' => $gallery
@@ -96,7 +96,7 @@ class GalleryController
 
 
     /**
-     * @Access("hello: manage settings")
+     * @Access("gallery: manage settings")
      */
     public function settingsAction()
     {

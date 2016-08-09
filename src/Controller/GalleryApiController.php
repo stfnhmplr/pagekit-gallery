@@ -8,7 +8,7 @@ use Shw\Gallery\Model\Image;
 use Intervention\Image\ImageManagerStatic as ImageManager;
 
 /**
- * @Access("blog: manage own posts || blog: manage all posts")
+ * @Access("gallery: manage own galleries || gallery: manage all galleries")
  * @Route("/", name="gallery")
  */
 class GalleryApiController
@@ -26,11 +26,11 @@ class GalleryApiController
     public function indexAction($filter = [], $page = 0)
     {
         $query  = Gallery::query();
-        $filter = array_merge(array_fill_keys(['status', 'search', 'author', 'order', 'limit'], ''), $filter);
+        $filter = array_merge(array_fill_keys(['photograph', 'status', 'search', 'author', 'order', 'limit'], ''), $filter);
 
         extract($filter, EXTR_SKIP);
 
-        if(!App::user()->hasAccess('blog: manage all posts')) {
+        if(!App::user()->hasAccess('gallery: manage all galleries')) {
             $author = App::user()->id;
         }
 
@@ -54,7 +54,7 @@ class GalleryApiController
             $order = [1 => 'date', 2 => 'desc'];
         }
 
-        $limit = 10; //(int) $limit ?: App::module('blog')->config('posts.posts_per_page');
+        $limit = 10; //TODO add limit to settings (int) $limit ?: App::module('gallery')->config('gallery.galleries_per_page');
         $count = $query->count();
         $pages = ceil($count / $limit);
         $page  = max(0, min($pages - 1, $page));
@@ -93,12 +93,12 @@ class GalleryApiController
         }
 
         // user without universal access is not allowed to assign galleries to other users
-        if(!App::user()->hasAccess('blog: manage all posts')) {
+        if(!App::user()->hasAccess('gallery: manage all galleries')) {
             $data['user_id'] = App::user()->id;
         }
 
         // user without universal access can only edit their own galleries
-        if(!App::user()->hasAccess('blog: manage all posts') && !App::user()->hasAccess('blog: manage own posts') && $gallery->user_id !== App::user()->id) {
+        if(!App::user()->hasAccess('gallery: manage all galleries') && !App::user()->hasAccess('gallery: manage own galleries') && $gallery->user_id !== App::user()->id) {
             App::abort(400, __('Access denied.'));
         }
 
@@ -115,7 +115,7 @@ class GalleryApiController
     {
         if ($gallery = Gallery::find($id)) {
 
-            if(!App::user()->hasAccess('blog: manage all posts') && !App::user()->hasAccess('blog: manage own posts') && $gallery->user_id !== App::user()->id) {
+            if(!App::user()->hasAccess('gallery: manage all galleries') && !App::user()->hasAccess('gallery: manage own galleries') && $gallery->user_id !== App::user()->id) {
                 App::abort(400, __('Access denied.'));
             }
 
@@ -133,7 +133,7 @@ class GalleryApiController
     {
         foreach ($ids as $id) {
             if ($gallery = Gallery::find((int) $id)) {
-                if(!App::user()->hasAccess('blog: manage all posts') && !App::user()->hasAccess('blog: manage own posts') && $gallery->user_id !== App::user()->id) {
+                if(!App::user()->hasAccess('gallery: manage all galleries') && !App::user()->hasAccess('gallery: manage own galleries') && $gallery->user_id !== App::user()->id) {
                     continue;
                 }
 
