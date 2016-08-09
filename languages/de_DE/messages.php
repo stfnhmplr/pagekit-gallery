@@ -60,6 +60,7 @@
     "Custom" => "Benutzerdefiniert",
     "Galleries per page" => "Galerien je Seite",
     "Default gallery settings" => "Standard Einstellungen",
+    "Delete Galleries?" => "Galerien löschen?",
     "Thumbnail size" => "Thumbnail Größe",
     "Width" => "Breite",
     "Height" => "Höhe",

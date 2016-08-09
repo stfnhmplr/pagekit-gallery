@@ -119,6 +119,15 @@ class GalleryApiController
                 App::abort(400, __('Access denied.'));
             }
 
+            //delete pictures
+            $images = Image::query()->where(['gallery_id' => $gallery->id])->get();
+
+            foreach($images as $image) {
+                unlink('storage/shw-gallery/'.$image->filename);
+                unlink('storage/shw-gallery/thumbnails/tn_'.$image->filename);
+                $image->delete();
+            }
+
             $gallery->delete();
         }
 
