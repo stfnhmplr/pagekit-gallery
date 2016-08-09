@@ -1,6 +1,7 @@
 <?php
 
 use Pagekit\Application;
+use Shw\Gallery\Events\RouteListener;
 
 /*
  * This array is the module definition.
@@ -98,20 +99,10 @@ return [
         // name, can be used for menu hierarchy
         'gallery' => [
 
-            // Label to display
             'label' => 'Gallery',
-
-            // Icon to display
             'icon' => 'gallery:icon.svg',
-
-            // URL this menu item links to
             'url' => '@gallery/admin',
-
-            // Optional: Expression to check if menu item is active on current url
-            // 'active' => '@hello*'
-
-            // Optional: Limit access to roles which have specific permission assigned
-            // 'access' => 'hello: manage hellos'
+            'access' => 'gallery: manage own galleries'
         ],
 
         'gallery: panel' => [
@@ -119,18 +110,17 @@ return [
             // Parent menu item, makes this appear on 2nd level
             'parent' => 'gallery',
 
-            // See above
             'label' => 'Gallery',
             'icon' => 'gallery:icon.svg',
-            'url' => '@gallery/admin'
-            // 'access' => 'hello: manage hellos'
+            'url' => '@gallery/admin',
+            'access' => 'gallery: manage own galleries'
         ],
 
         'gallery: settings' => [
             'parent' => 'gallery',
             'label' => 'Settings',
             'url' => '@gallery/admin/settings',
-            'access' => 'system: manage settings'
+            'access' => 'gallery: manage settings'
         ]
 
     ],
@@ -181,6 +171,12 @@ return [
      * Listen to events.
      */
     'events' => [
+
+        'boot' => function ($event, $app) {
+            $app->subscribe(
+                new RouteListener
+            );
+        },
 
         'view.scripts' => function ($event, $scripts) {
             $scripts->register('gallery-link', 'gallery:app/bundle/link-gallery.js', '~panel-link');

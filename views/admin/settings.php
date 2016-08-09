@@ -53,7 +53,7 @@
                             <p class="uk-form-controls-condensed">
                                 <label>
                                     <input type="radio" v-model="config.permalink.type" value="{slug}">
-                                    {{ 'Name' | trans }} <code>{{ '/sample-post' | trans }}</code>
+                                    {{ 'Name' | trans }} <code>{{ '/sample-gallery' | trans }}</code>
                                 </label>
                             </p>
                             <p class="uk-form-controls-condensed">
