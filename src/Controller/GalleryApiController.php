@@ -5,7 +5,7 @@ namespace Shw\Gallery\Controller;
 use Pagekit\Application as App;
 use Shw\Gallery\Model\Gallery;
 use Shw\Gallery\Model\Image;
-use Intervention\Image\ImageManagerStatic as ImageManager;
+use Gregwar\Image\Image as GImage;
 
 /**
  * @Access("gallery: manage own galleries || gallery: manage all galleries")
@@ -13,12 +13,6 @@ use Intervention\Image\ImageManagerStatic as ImageManager;
  */
 class GalleryApiController
 {
-
-    public function __construct()
-    {
-        ImageManager::configure(array('driver' => 'gd'));
-    }
-
     /**
      * @Route("/", methods="GET")
      * @Request({"filter": "array", "page":"int"})
@@ -217,20 +211,15 @@ class GalleryApiController
             $file['name'] = str_replace($match[0], '', $file['name']);
             $new_filename = strtolower(time()."_".App::filter($file['name'], 'slugify').$match[0]);
 
-            $img = ImageManager::make($file['tmp_name']);
+            $img = GImage::open($file['tmp_name']);
 
-            $img->resize(
+            $img->cropResize(
                 App::module('gallery')->config('images.image_width'),
-                App::module('gallery')->config('images.image_height'), function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })->save($path."/".$new_filename);
+                App::module('gallery')->config('images.image_height'))->save($path."/".$new_filename);
 
-            $img->fit(
+            $img->zoomCrop(
                 App::module('gallery')->config('images.thumbnail_width'),
-                App::module('gallery')->config('images.thumbnail_height'), function ($constraint) {
-                $constraint->upsize();
-            })->save($path."/thumbnails/tn_".$new_filename);
+                App::module('gallery')->config('images.thumbnail_height'))->save($path."/thumbnails/tn_".$new_filename);
 
             $image = Image::create();
             $image->gallery_id = $gallery->id;

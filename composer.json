@@ -12,14 +12,14 @@
             "homepage": "http://himpler.com"
         }
     ],
+    "require": {
+        "gregwar/image": "2.*"
+    },
     "extra": {
         "icon": "icon.svg",
         "scripts": "scripts.php"
     },
     "archive": {
-        "exclude": ["node_modules", "!/app"]
-    },
-    "require": {
-        "intervention/image": "2.3.*"
+        "exclude": ["node_modules", "!/app", "!/vendor", "composer.lock"]
     }
 }
