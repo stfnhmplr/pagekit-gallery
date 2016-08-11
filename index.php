@@ -10,25 +10,9 @@ use Shw\Gallery\Events\RouteListener;
  */
 return [
 
-    /*
-     * Define a unique name.
-     */
     'name' => 'gallery',
-
-    /*
-     * Define the type of this module.
-     * Has to be 'extension' here. Can be 'theme' for a theme.
-     */
     'type' => 'extension',
-
-    /*
-     * Main entry point. Called when your extension is both installed and activated.
-     * Either assign an closure or a string that points to a PHP class.
-     * Example: 'main' => 'Pagekit\\Hello\\HelloExtension'
-     */
     'main' => function (Application $app) {
-
-        // bootstrap code
 
     },
 
@@ -40,7 +24,6 @@ return [
     'autoload' => [
 
         'Shw\\Gallery\\' => 'src',
-        'Intervention\\Image\\' => 'vendor/intervention/image/src/Intervention/Image'
 
     ],
 
