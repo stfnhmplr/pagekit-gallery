@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.3 (August 11, 2016)
+
+- changed image library due dependency issues with composer
+
 ## 0.0.2 (August 9, 2016)
 
 - Bugfixes and translation improvements
