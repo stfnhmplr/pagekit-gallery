@@ -97,7 +97,7 @@
 
                 this.$http.post('api/gallery/upload', this.form)
                         .then(function (res) {
-                    this.$notify('Images uploaded.');
+                    this.$notify(this.$trans((this.files.length > 1) ? 'Images uploaded' : 'Image uploaded'));
                     this.reset();
                     this.$set('gallery.images', res.data.images)
 

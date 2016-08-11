@@ -3,6 +3,8 @@
     "Filter by" => "Filtern nach",
     "Photograph" => "Fotograf",
     "Image Upload" => "Bilder hochladen",
+    "Images uploaded" => "Bilder hochgeladen",
+    "Image uploaded" => "Bild hochgeladen",
     "Title cannot be blank." => "Der Titel darf nicht leer sein",
     "View" => "Ansicht",
     "Please save gallery first" => "Bitte Speicher die Galerie zunächst",
