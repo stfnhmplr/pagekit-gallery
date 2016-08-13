@@ -7,3 +7,5 @@ gallery-extension for https://pagekit.com/
 - uses uikit-lightbox at the frontend
 
 **this extension has beta status**
+
+thanks to pierzo for polish translation
