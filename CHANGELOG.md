@@ -1,7 +1,8 @@
 # Changelog
 
-## 0.0.4 (August 12, 2016)
+## 0.0.4 (August 13, 2016)
 - added more languages
+    - polish
 
 ## 0.0.3 (August 11, 2016)
 
