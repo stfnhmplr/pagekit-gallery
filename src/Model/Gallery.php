@@ -109,10 +109,6 @@ class Gallery implements \JsonSerializable
     {
         $images = Image::query()->where(['gallery_id' => $this->id])->get();
 
-        $data = [
-            'url' => App::url('@blog/id', ['id' => $this->id ?: 0], 'base')
-        ];
-
         return $this->toArray(['images' => $images, 'url' => App::url('@gallery/id', ['id' => $this->id ?: 0], 'base')]);
     }
 }
