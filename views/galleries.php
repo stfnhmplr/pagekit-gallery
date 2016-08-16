@@ -1,17 +1,21 @@
-<?php //$view->style('gallery', 'extensions/gallery/assets/css/gallery.css')?>
+<?php $view->style('gallery', 'extensions/gallery/assets/css/gallery.css', 'uikit')?>
 
 <h1><?= $shwGallery->config('gallery.title') ?></h1>
 
-<div class="uk-grid uk-grid-width-1-4">
-<?php foreach ($galleries as $gallery): ?>
-    <div class="uk-text-center">
-        <h2 class="uk-h3"><?= $gallery->title ?></h2>
-        <a class="uk-thumbnail uk-overlay-toggle" href="<?= $view->url('@gallery').'/'.$gallery->id ?>">
-            <img class="uk-thumbnail" src="/storage/shw-gallery/thumbnails/tn_<?= $gallery->image->filename?>">
-        </a>
+<?php if(!$galleries): ?>
+    <h3 class="uk-h1 uk-text-muted uk-text-center"><?php echo __('No Galleries found') ?></h3>
+<?php else: ?>
+    <div class="uk-grid uk-grid-width-1-4">
+    <?php foreach ($galleries as $gallery): ?>
+        <div class="uk-text-center">
+            <h2 class="uk-h3"><?= $gallery->title ?></h2>
+            <a class="uk-thumbnail uk-overlay-toggle" href="<?= $view->url('@gallery/id', ['id' => $gallery->id]) ?>">
+                <img class="uk-thumbnail" src="/storage/shw-gallery/thumbnails/tn_<?= $gallery->image->filename?>">
+            </a>
+        </div>
+    <?php endforeach; ?>
     </div>
-<?php endforeach ?>
-</div>
+<?php endif; ?>
 
 <?php
 

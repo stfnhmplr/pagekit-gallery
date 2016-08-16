@@ -1,4 +1,4 @@
-<?php //$view->style('gallery', 'extensions/gallery/assets/css/gallery.css')?>
+<?php $view->style('gallery', 'extensions/gallery/assets/css/gallery.css', 'uikit')?>
 
 <h1><?= $gallery->title ?></h1>
 
