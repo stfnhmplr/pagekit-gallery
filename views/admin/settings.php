@@ -42,39 +42,41 @@
                                 </p>
                             </div>
                         </div>
-                        <span class="uk-form-label">{{ 'Permalink' | trans }}</span>
-                        <div class="uk-form-controls uk-form-controls-text">
-                            <p class="uk-form-controls-condensed">
-                                <label>
-                                    <input type="radio" v-model="config.permalink.type" value="">
-                                    {{ 'Numeric' | trans }} <code>{{ '/123' | trans }}</code>
-                                </label>
-                            </p>
-                            <p class="uk-form-controls-condensed">
-                                <label>
-                                    <input type="radio" v-model="config.permalink.type" value="{slug}">
-                                    {{ 'Name' | trans }} <code>{{ '/sample-gallery' | trans }}</code>
-                                </label>
-                            </p>
-                            <p class="uk-form-controls-condensed">
-                                <label>
-                                    <input type="radio" v-model="config.permalink.type" value="{year}/{month}/{day}/{slug}">
-                                    {{ 'Day and name' | trans }} <code>{{ '/2014/06/12/sample-gallery' | trans }}</code>
-                                </label>
-                            </p>
-                            <p class="uk-form-controls-condensed">
-                                <label>
-                                    <input type="radio" v-model="config.permalink.type" value="{year}/{month}/{slug}">
-                                    {{ 'Month and name' | trans }} <code>{{ '/2014/06/sample-gallery' | trans }}</code>
-                                </label>
-                            </p>
-                            <p class="uk-form-controls-condensed">
-                                <label>
-                                    <input type="radio" v-model="config.permalink.type" value="custom">
-                                    {{ 'Custom' | trans }}
-                                </label>
-                                <input class="uk-form-small" type="text" v-model="config.permalink.custom">
-                            </p>
+                        <div class="uk-form-row">
+                            <span class="uk-form-label">{{ 'Permalink' | trans }}</span>
+                            <div class="uk-form-controls uk-form-controls-text">
+                                <p class="uk-form-controls-condensed">
+                                    <label>
+                                        <input type="radio" v-model="config.permalink.type" value="">
+                                        {{ 'Numeric' | trans }} <code>{{ '/123' | trans }}</code>
+                                    </label>
+                                </p>
+                                <p class="uk-form-controls-condensed">
+                                    <label>
+                                        <input type="radio" v-model="config.permalink.type" value="{slug}">
+                                        {{ 'Name' | trans }} <code>{{ '/sample-gallery' | trans }}</code>
+                                    </label>
+                                </p>
+                                <p class="uk-form-controls-condensed">
+                                    <label>
+                                        <input type="radio" v-model="config.permalink.type" value="{year}/{month}/{day}/{slug}">
+                                        {{ 'Day and name' | trans }} <code>{{ '/2014/06/12/sample-gallery' | trans }}</code>
+                                    </label>
+                                </p>
+                                <p class="uk-form-controls-condensed">
+                                    <label>
+                                        <input type="radio" v-model="config.permalink.type" value="{year}/{month}/{slug}">
+                                        {{ 'Month and name' | trans }} <code>{{ '/2014/06/sample-gallery' | trans }}</code>
+                                    </label>
+                                </p>
+                                <p class="uk-form-controls-condensed">
+                                    <label>
+                                        <input type="radio" v-model="config.permalink.type" value="custom">
+                                        {{ 'Custom' | trans }}
+                                    </label>
+                                    <input class="uk-form-small" type="text" v-model="config.permalink.custom">
+                                </p>
+                            </div>
                         </div>
                     </div>
 
@@ -83,6 +85,15 @@
                         <div class="uk-form-controls uk-form-controls-text">
                             <p class="uk-form-controls-condensed">
                                 <input type="number" v-model="config.gallery.galleries_per_page" class="uk-form-width-small">
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="uk-form-row">
+                        <label class="uk-form-label">{{ 'Show back button' | trans }}</label>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <p class="uk-form-controls-condensed">
+                                <input type="checkbox" v-model="config.gallery.back_button" value="1">
                             </p>
                         </div>
                     </div>

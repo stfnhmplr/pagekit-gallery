@@ -67,5 +67,7 @@
     "Width" => "Breite",
     "Height" => "Höhe",
     "Image size" => "Bildgröße",
-    "Enter Title" => "Titel eingeben"
+    "Enter Title" => "Titel eingeben",
+    "back" => "zurück",
+    "Show back button" => "Zurück Button einblenden"
 );

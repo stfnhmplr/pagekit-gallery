@@ -139,7 +139,8 @@ return [
      */
     'config' => [
         'gallery' => [
-            'title' => 'Gallery'
+            'title' => 'Gallery',
+            'back_button' => false
         ],
 
         'images' => [

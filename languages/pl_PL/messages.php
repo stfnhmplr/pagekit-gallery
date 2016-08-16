@@ -67,5 +67,7 @@
     "Width" => "Szerokość",
     "Height" => "Wysokość",
     "Image size" => "Rozmiar obrazu",
-    "Enter Title" => "Wprowadź tytuł"
+    "Enter Title" => "Wprowadź tytuł",
+    "back" => "z powrotem",
+    "Show back button" => "Pokaż przycisk wstecz"
 );
