@@ -26,9 +26,30 @@
             <h3 class="uk-h1 uk-text-muted uk-text-center" v-if="!gallery.images">{{ 'No images found' | trans }}</h3>
             <div class="uk-grid uk-grid-width-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-5" v-else>
                 <div class="uk-text-center" v-for="image in gallery.images">
-                    <img class="uk-thumbnail" :src="'/storage/shw-gallery/thumbnails/tn_' + image.filename"/>
+                    <img class="uk-thumbnail pointer" :src="'/storage/shw-gallery/thumbnails/tn_' + image.filename" @click="editImage(image)"/>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="uk-modal" v-el:modal>
+        <div class="uk-modal-dialog" v-if="img">
+
+            <div class="uk-modal-header">
+                <h2 class="uk-margin-small-bottom">{{ 'Edit image' | trans }}</h2>
+            </div>
+
+            <div class="uk-form-row">
+                <label for="form-title" class="uk-form-label">{{ 'Title' | trans }}</label>
+                <div class="uk-form-controls">
+                    <input id="form-title" class="uk-width-1-1" type="text" v-model="img.title">
+                </div>
+            </div>
+
+            <div class="uk-modal-footer uk-text-right">
+                <button class="uk-button uk-button-link uk-modal-close" type="button">{{ 'Cancel' | trans }}</button>
+                <button class="uk-button uk-button-link" @click.prevent="saveImage(img)">{{ 'Update' | trans }}</button>
+            </div>
+
         </div>
     </div>
 </template>
@@ -50,6 +71,10 @@
         height: 100%;
         opacity: 0;
     }
+
+    .pointer {
+        cursor: pointer;
+    }
 </style>
 
 <script>
@@ -65,7 +90,7 @@
             return {
                 files: [],
                 form: {},
-                images: []
+                images: [],
             }
         },
 
@@ -80,6 +105,26 @@
                         this.reset();
                     }
                 }
+            },
+
+            editImage: function (img) {
+
+                if (!this.modal) {
+                    this.modal = UIkit.modal(this.$els.modal);
+                }
+
+                this.$set('img', img);
+                this.modal.show();
+            },
+
+            saveImage: function(img) {
+                this.$resource('api/gallery/image{/id}').save({ id: img.id }, { image: img }).then(function () {
+                    this.modal.hide();
+                });
+            },
+
+            cancelEdit: function () {
+                this.modal.hide();
             },
 
             upload() {

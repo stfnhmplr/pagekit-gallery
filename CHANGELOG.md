@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.0 (August XX, 2016)
+- bugfix gallery link @frontend
+- added back button (enable via settings) to gallery-view
+- image functions
+    - set image title
+
 ## 0.0.4 (August 13, 2016)
 - added more languages
     - polish

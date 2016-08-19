@@ -11,7 +11,7 @@ use Pagekit\System\Model\DataModelTrait;
  */
 class Image
 {
-    use DataModelTrait, ModelTrait;
+    use DataModelTrait, ImageModelTrait;
 
     /** @Column(type="integer") @Id */
     public $id;
@@ -39,5 +39,4 @@ class Image
 
     /** @BelongsTo(targetEntity="Shw\Gallery\Model\Gallery", keyFrom="gallery_id") */
     public $gallery;
-
 }
