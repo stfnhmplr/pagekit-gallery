@@ -69,5 +69,8 @@
     "Image size" => "Bildgröße",
     "Enter Title" => "Titel eingeben",
     "back" => "zurück",
-    "Show back button" => "Zurück Button einblenden"
+    "Show back button" => "Zurück Button einblenden",
+    "Image deleted" => "Bild gelöscht",
+    "Delete Image?" => "Bild löschen?",
+    "Image quality" => "Bildqualität"
 );

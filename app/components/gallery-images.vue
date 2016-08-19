@@ -1,6 +1,7 @@
 <template>
     <div>
         <h2>{{ 'Image Upload' | trans }}</h2>
+
         <h3 class="uk-h1 uk-text-muted uk-text-center" v-if="!gallery.id">{{ 'Please save gallery first' | trans }}</h3>
 
         <div v-else>
@@ -34,8 +35,11 @@
     <div class="uk-modal" v-el:modal>
         <div class="uk-modal-dialog" v-if="img">
 
-            <div class="uk-modal-header">
+            <div class="uk-modal-header uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
                 <h2 class="uk-margin-small-bottom">{{ 'Edit image' | trans }}</h2>
+                <ul class="uk-subnav pk-subnav-icon uk-margin-left">
+                <li><a class="pk-icon-delete pk-icon-hover" title="Delete" data-uk-tooltip="{delay: 500}" @click.prevent="deleteImage(img)" v-confirm="'Delete Image?'"></a></li>
+                </ul>
             </div>
 
             <div class="uk-form-row">
@@ -90,7 +94,7 @@
             return {
                 files: [],
                 form: {},
-                images: [],
+                images: []
             }
         },
 
@@ -105,6 +109,14 @@
                         this.reset();
                     }
                 }
+            },
+
+            deleteImage: function(img) {
+                this.$resource('api/gallery/image{/id}').delete({ id: img.id }).then(function (res) {
+                    this.modal.hide();
+                    this.$set('gallery.images', res.data.images);
+                    this.$notify(this.$trans('Image deleted'));
+                });
             },
 
             editImage: function (img) {

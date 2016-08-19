@@ -10,7 +10,7 @@
             <template v-else>
                 <h2 class="uk-margin-remove">{{ '{1} %count% Gallery selected|]1,Inf[ %count% Galleries selected' | transChoice selected.length {count:selected.length} }}</h2>
 
-                <div class="uk-margin-left" >
+                <div class="uk-margin-left">
                     <ul class="uk-subnav pk-subnav-icon">
                         <li><a class="pk-icon-check pk-icon-hover" title="Publish" data-uk-tooltip="{delay: 500}" @click="status(2)"></a></li>
                         <li><a class="pk-icon-block pk-icon-hover" title="Unpublish" data-uk-tooltip="{delay: 500}" @click="status(3)"></a></li>

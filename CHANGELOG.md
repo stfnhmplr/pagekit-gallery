@@ -5,6 +5,7 @@
 - added back button (enable via settings) to gallery-view
 - image functions
     - set image title
+    - delete single images
 
 ## 0.0.4 (August 13, 2016)
 - added more languages

@@ -215,11 +215,13 @@ class GalleryApiController
 
             $img->cropResize(
                 App::module('gallery')->config('images.image_width'),
-                App::module('gallery')->config('images.image_height'))->save($path."/".$new_filename);
+                App::module('gallery')->config('images.image_height'))
+                ->save($path."/".$new_filename, App::module('gallery')->config('images.image_quality'));
 
             $img->zoomCrop(
                 App::module('gallery')->config('images.thumbnail_width'),
-                App::module('gallery')->config('images.thumbnail_height'))->save($path."/thumbnails/tn_".$new_filename);
+                App::module('gallery')->config('images.thumbnail_height'))
+                ->save($path."/thumbnails/tn_".$new_filename, App::module('gallery')->config('images.image_quality'));
 
             $image = Image::create();
             $image->gallery_id = $gallery->id;

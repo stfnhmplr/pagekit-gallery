@@ -39,4 +39,27 @@ class ImageApiController
 
         return ['message' => 'success'];
     }
+
+    /**
+     * @Route("/{id}", methods="DELETE", requirements={"id"="\d+"})
+     * @Request({"id": "int"}, csrf=true)
+     */
+    public function deleteAction($id)
+    {
+        if ($image = Image::find($id)) {
+
+            if (!App::user()->hasAccess('gallery: manage all galleries') && !App::user()->hasAccess('gallery: manage own galleries') && $image->user_id !== App::user()->id) {
+                App::abort(400, __('Access denied.'));
+            }
+
+            unlink('storage/shw-gallery/' . $image->filename);
+            unlink('storage/shw-gallery/thumbnails/tn_' . $image->filename);
+
+            $image->delete();
+
+            $images = Image::query()->where(['gallery_id' => $image->gallery_id])->get();
+
+            return ['message' => 'success', 'images' => $images];
+        }
+    }
 }

@@ -147,7 +147,8 @@ return [
             'image_width'   => 1200,
             'image_height'  => 1200,
             'thumbnail_width'   => 150,
-            'thumbnail_height'  => 100
+            'thumbnail_height'  => 100,
+            'image_quality'  => 90,
         ]
     ],
 
