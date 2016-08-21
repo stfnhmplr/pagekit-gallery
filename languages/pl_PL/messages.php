@@ -72,5 +72,6 @@
     "Show back button" => "Pokaż przycisk wstecz",
     "Image deleted" => "Obraz usunięty",
     "Delete Image?" => "Usuń obraz?",
-    "Image quality" => "Jakość obrazu"
+    "Image quality" => "Jakość obrazu",
+    "Image saved" => "Obraz zapisany"
 );

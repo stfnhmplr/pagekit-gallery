@@ -72,5 +72,6 @@
     "Show back button" => "Zurück Button einblenden",
     "Image deleted" => "Bild gelöscht",
     "Delete Image?" => "Bild löschen?",
-    "Image quality" => "Bildqualität"
+    "Image quality" => "Bildqualität",
+    "Image saved" => "Bild gespeichert"
 );

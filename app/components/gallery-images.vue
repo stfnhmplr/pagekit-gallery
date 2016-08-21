@@ -132,6 +132,7 @@
             saveImage: function(img) {
                 this.$resource('api/gallery/image{/id}').save({ id: img.id }, { image: img }).then(function () {
                     this.modal.hide();
+                    this.$notify(this.$trans('Image saved'));
                 });
             },
 
