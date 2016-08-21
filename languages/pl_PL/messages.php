@@ -73,5 +73,10 @@
     "Image deleted" => "Obraz usunięty",
     "Delete Image?" => "Usuń obraz?",
     "Image quality" => "Jakość obrazu",
-    "Image saved" => "Obraz zapisany"
+    "Image saved" => "Obraz zapisany",
+    "{0} Galleries|{1} Gallery|]1,Inf[ Galleries" => "{0} Galerie|{1} Galeria|]1,Inf[ Galerie",
+    "{0} Images|{1} Image |]1,Inf[ Images" => "{0} Zdjęcia|{1} Zdjęcie |]1,Inf[ Zdjęcia",
+    "show all" => "Pokaż wszystko",
+    "only with status" => "tylko ze statusem",
+    "show random image" => "pokazać losowe zdjęcie"
 );

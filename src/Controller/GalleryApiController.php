@@ -237,6 +237,33 @@ class GalleryApiController
     }
 
     /**
+     * @Route("/dashboard", methods="GET")
+     * @Request({"filter": "array"})
+     */
+    public function dashboardAction($filter = [])
+    {
+        $query = Gallery::query();
+
+        if (key_exists('status', $filter)) {
+            $query->where(['status' => (int) $filter['status']]);
+        }
+
+        $galleries = $query->count();
+
+        $ids = array_column($query->select('id')->execute()->fetchAll(), 'id');
+
+        $images = Image::query()->whereIn('gallery_id', $ids)->count();
+
+        $teaser = Image::query()->whereIn('gallery_id', $ids)->offset(rand(0, $images-1))->limit(1)->get();
+        $teaser = reset($teaser);
+
+        $statuses = Gallery::getStatuses();
+
+        return compact('galleries', 'images', 'statuses', 'teaser');
+
+    }
+
+    /**
      * Rearrange $_FILES array
      * @param $arr
      * @return mixed

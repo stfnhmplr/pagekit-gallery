@@ -165,7 +165,7 @@ return [
 
         'view.scripts' => function ($event, $scripts) {
             $scripts->register('gallery-link', 'gallery:app/bundle/link-gallery.js', '~panel-link');
-            $scripts->register('gallery-dashboard', 'gallery:app/bundle/dashboard.js', '~dashboard');
+            $scripts->register('gallery-dashboard', 'gallery:app/bundle/gallery-dashboard.js', '~dashboard');
             $scripts->register('gallery-meta', 'gallery:app/bundle/gallery-meta.js', '~gallery-edit');
             $scripts->register('gallery-images', 'gallery:app/bundle/gallery-images.js', '~gallery-edit');
 

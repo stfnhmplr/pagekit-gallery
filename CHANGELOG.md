@@ -1,11 +1,12 @@
 # Changelog
 
-## 0.1.0 (August XX, 2016)
+## 0.1.0 (August 21, 2016)
 - bugfix gallery link @frontend
 - added back button (enable via settings) to gallery-view
 - image functions
     - set image title
     - delete single images
+- added dashboard image
 
 ## 0.0.4 (August 13, 2016)
 - added more languages

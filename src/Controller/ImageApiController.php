@@ -62,4 +62,12 @@ class ImageApiController
             return ['message' => 'success', 'images' => $images];
         }
     }
+
+    /**
+     * @Route("/count", methods="GET")
+     */
+    public function countAction()
+    {
+        return Image::query()->count();
+    }
 }
