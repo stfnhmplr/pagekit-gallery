@@ -78,5 +78,7 @@
     "{0} Images|{1} Image |]1,Inf[ Images" => "{0} Zdjęcia|{1} Zdjęcie |]1,Inf[ Zdjęcia",
     "show all" => "Pokaż wszystko",
     "only with status" => "tylko ze statusem",
-    "show random image" => "pokazać losowe zdjęcie"
+    "show random image" => "pokazać losowe zdjęcie",
+    "Edit image" => "Edycja obrazu",
+    "Delete image" => "Usuń zdjęcie"
 );

@@ -38,7 +38,7 @@
             <div class="uk-modal-header uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
                 <h2 class="uk-margin-small-bottom">{{ 'Edit image' | trans }}</h2>
                 <ul class="uk-subnav pk-subnav-icon uk-margin-left">
-                <li><a class="pk-icon-delete pk-icon-hover" title="Delete" data-uk-tooltip="{delay: 500}" @click.prevent="deleteImage(img)" v-confirm="'Delete Image?'"></a></li>
+                <li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete image' | trans}}" data-uk-tooltip="{delay: 500}" @click.prevent="deleteImage(img)" v-confirm="'Delete Image?'"></a></li>
                 </ul>
             </div>
 
