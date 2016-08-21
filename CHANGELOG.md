@@ -6,7 +6,7 @@
 - image functions
     - set image title
     - delete single images
-- added dashboard image
+- added dashboard widget
 
 ## 0.0.4 (August 13, 2016)
 - added more languages
