@@ -9,6 +9,7 @@ module.exports = [
             "link-gallery": "./app/components/link-gallery.vue",
             "gallery-meta": "./app/components/gallery-meta.vue",
             "gallery-images": "./app/components/gallery-images.vue"
+
         },
         output: {
             filename: "./app/bundle/[name].js"

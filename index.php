@@ -2,6 +2,7 @@
 
 use Pagekit\Application;
 use Shw\Gallery\Events\RouteListener;
+use Shw\Gallery\Content\MiniGalleryPlugin;
 
 /*
  * This array is the module definition.
@@ -159,7 +160,8 @@ return [
 
         'boot' => function ($event, $app) {
             $app->subscribe(
-                new RouteListener
+                new RouteListener,
+                new MiniGalleryPlugin
             );
         },
 
@@ -168,7 +170,7 @@ return [
             $scripts->register('gallery-dashboard', 'gallery:app/bundle/gallery-dashboard.js', '~dashboard');
             $scripts->register('gallery-meta', 'gallery:app/bundle/gallery-meta.js', '~gallery-edit');
             $scripts->register('gallery-images', 'gallery:app/bundle/gallery-images.js', '~gallery-edit');
-
+            //$scripts->register('minigallery', 'gallery:app/bundle/minigallery.js', ['~editor']);
         }
 
     ]

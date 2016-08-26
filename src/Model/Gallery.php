@@ -26,6 +26,9 @@ class Gallery implements \JsonSerializable
     /* Gallery unpublished. */
     const STATUS_UNPUBLISHED = 3;
 
+    /* Minigallery only */
+    const STATUS_MINIGALLERY = 4;
+
     /** @Column(type="integer") @Id */
     public $id;
 
@@ -76,7 +79,8 @@ class Gallery implements \JsonSerializable
             self::STATUS_PUBLISHED => __('Published'),
             self::STATUS_UNPUBLISHED => __('Unpublished'),
             self::STATUS_DRAFT => __('Draft'),
-            self::STATUS_PENDING_REVIEW => __('Pending Review')
+            self::STATUS_PENDING_REVIEW => __('Pending Review'),
+            self::STATUS_MINIGALLERY => __('Minigallery only')
         ];
     }
 

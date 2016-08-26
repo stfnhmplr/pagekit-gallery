@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.1 (August XX, 2016)
+- add a mini slideshow with shortcode to your post or site 
+
 ## 0.1.0 (August 21, 2016)
 - bugfix gallery link @frontend
 - added back button (enable via settings) to gallery-view
