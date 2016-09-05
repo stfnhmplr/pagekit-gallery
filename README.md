@@ -21,3 +21,4 @@ gallery-extension for https://pagekit.com/
 **this extension has beta status**
 
 thanks to pierzo for polish translation
+thanks to kroozo for hungarian translation
