@@ -8,7 +8,7 @@ use Pagekit\Event\EventSubscriberInterface;
 use Shw\Gallery\Model\Image;
 use Shw\Gallery\Model\Gallery;
 
-class MiniGalleryPlugin implements EventSubscriberInterface
+class SlideshowPlugin implements EventSubscriberInterface
 {
     /**
      * Content plugins callback.
@@ -31,10 +31,7 @@ class MiniGalleryPlugin implements EventSubscriberInterface
                     array_combine($attributes[1], $attributes[2]));
                 $attributes['description'] = (key_exists(0, $matches[2])) ? $matches[2][0] : null;
 
-                $gallery_id = intval($attributes['id']);
-                $gallery = Gallery::find($gallery_id);
-
-                $query = Image::query()->where(compact('gallery_id'));
+                $query = Image::query()->where(['gallery_id' => intval($attributes['id'])]);
 
                 if(key_exists('limit', $attributes)) {
                     $query = $query->limit(intval($attributes['limit']));

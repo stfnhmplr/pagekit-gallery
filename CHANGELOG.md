@@ -1,7 +1,9 @@
 # Changelog
 
 ## 0.1.1 (August XX, 2016)
-- add a mini slideshow with shortcode to your post or site 
+- add a mini slideshow with shortcode to your post or site
+- added more languages
+    - hungarian
 
 ## 0.1.0 (August 21, 2016)
 - bugfix gallery link @frontend

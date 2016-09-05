@@ -2,7 +2,7 @@
 
 use Pagekit\Application;
 use Shw\Gallery\Events\RouteListener;
-use Shw\Gallery\Content\MiniGalleryPlugin;
+use Shw\Gallery\Content\SlideshowPlugin;
 
 /*
  * This array is the module definition.
@@ -161,7 +161,7 @@ return [
         'boot' => function ($event, $app) {
             $app->subscribe(
                 new RouteListener,
-                new MiniGalleryPlugin
+                new SlideshowPlugin
             );
         },
 
