@@ -80,5 +80,6 @@
     "only with status" => "nur mit Status",
     "show random image" => "Zufallsbild anzeigen",
     "Edit image" => "Bild bearbeiten",
-    "Delete image" => "Bild löschen"
+    "Delete image" => "Bild löschen",
+    "max %size%MB per upload" => "maximal %size%MB pro Upload"
 );

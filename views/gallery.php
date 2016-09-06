@@ -6,7 +6,9 @@
 
 <h1><?= $gallery->title ?></h1>
 
+<?php if($gallery->photograph): ?>
 <?= __('Photograph').': '.$gallery->photograph ?>
+<?php endif; ?>
 
 <p><?= $gallery->description ?></p>
 
