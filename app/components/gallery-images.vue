@@ -35,29 +35,29 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="uk-modal" v-el:modal>
-        <div class="uk-modal-dialog" v-if="img">
+        <div class="uk-modal" v-el:modal>
+            <div class="uk-modal-dialog" v-if="img">
 
-            <div class="uk-modal-header uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
-                <h2 class="uk-margin-small-bottom">{{ 'Edit image' | trans }}</h2>
-                <ul class="uk-subnav pk-subnav-icon uk-margin-left">
-                <li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete imagee' | trans}}" data-uk-tooltip="{delay: 500}" @click.prevent="deleteImage(img)" v-confirm="'Delete Image?'"></a></li>
-                </ul>
-            </div>
-
-            <div class="uk-form-row">
-                <label for="form-title" class="uk-form-label">{{ 'Title' | trans }}</label>
-                <div class="uk-form-controls">
-                    <input id="form-title" class="uk-width-1-1" type="text" v-model="img.title">
+                <div class="uk-modal-header uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
+                    <h2 class="uk-margin-small-bottom">{{ 'Edit image' | trans }}</h2>
+                    <ul class="uk-subnav pk-subnav-icon uk-margin-left">
+                    <li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete imagee' | trans}}" data-uk-tooltip="{delay: 500}" @click.prevent="deleteImage(img)" v-confirm="'Delete Image?'"></a></li>
+                    </ul>
                 </div>
-            </div>
 
-            <div class="uk-modal-footer uk-text-right">
-                <button class="uk-button uk-button-link uk-modal-close" type="button">{{ 'Cancel' | trans }}</button>
-                <button class="uk-button uk-button-link" @click.prevent="saveImage(img)">{{ 'Update' | trans }}</button>
-            </div>
+                <div class="uk-form-row">
+                    <label for="form-title" class="uk-form-label">{{ 'Title' | trans }}</label>
+                    <div class="uk-form-controls">
+                        <input id="form-title" class="uk-width-1-1" type="text" v-model="img.title">
+                    </div>
+                </div>
 
+                <div class="uk-modal-footer uk-text-right">
+                    <button class="uk-button uk-button-link uk-modal-close" type="button">{{ 'Cancel' | trans }}</button>
+                    <button class="uk-button uk-button-link" @click.prevent="saveImage(img)">{{ 'Update' | trans }}</button>
+                </div>
+
+            </div>
         </div>
     </div>
 </template>

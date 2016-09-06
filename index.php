@@ -60,7 +60,7 @@ return [
     'routes' => [
 
         '/gallery' => [
-            'name' => '@gallery/admin',
+            'name' => '@gallery',
             'controller' => [
                 'Shw\\Gallery\\Controller\\GalleryController'
             ]
@@ -80,31 +80,30 @@ return [
      */
     'menu' => [
 
-        // name, can be used for menu hierarchy
         'gallery' => [
-
             'label' => 'Gallery',
             'icon' => 'gallery:icon.svg',
-            'url' => '@gallery/admin',
+            'url' => '@gallery/gallery',
+            'active' => '@gallery/gallery*',
             'access' => 'gallery: manage own galleries'
         ],
 
-        'gallery: panel' => [
+        'gallery: galleries' => [
 
-            // Parent menu item, makes this appear on 2nd level
             'parent' => 'gallery',
-
-            'label' => 'Gallery',
+            'label' => 'Galleries',
             'icon' => 'gallery:icon.svg',
-            'url' => '@gallery/admin',
+            'url' => '@gallery/gallery',
+            'active' => '@gallery/gallery*',
             'access' => 'gallery: manage own galleries'
         ],
 
         'gallery: settings' => [
             'parent' => 'gallery',
             'label' => 'Settings',
-            'url' => '@gallery/admin/settings',
-            'access' => 'gallery: manage settings'
+            'url' => '@gallery/settings',
+            'active' => '@gallery/settings*',
+            'access' => 'system: access settings'
         ]
 
     ],
@@ -132,7 +131,7 @@ return [
     /*
      * Link to a settings screen from the extensions listing.
      */
-    'settings' => '@gallery/admin/settings',
+    'settings' => '@gallery/settings',
 
     /*
      * Default module configuration.

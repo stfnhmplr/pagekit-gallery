@@ -56,7 +56,7 @@
                 <tr class="check-item" v-for="gallery in galleries" :class="{'uk-active': active(gallery)}">
                     <td><input type="checkbox" name="id" :value="gallery.id"></td>
                     <td>
-                        <a :href="$url.route('admin/gallery/edit', { id: gallery.id })">{{ gallery.title }}</a>
+                        <a :href="$url.route('admin/gallery/gallery/edit', { id: gallery.id })">{{ gallery.title }}</a>
                     </td>
                     <td>
                         {{ gallery.photograph }}

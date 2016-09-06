@@ -11,7 +11,7 @@ use Pagekit\User\Model\Role;
  */
 class GalleryController
 {
-    public function indexAction($filter = null, $page = null) {
+    public function galleryAction($filter = null, $page = null) {
 
       return [
           '$view' => [
@@ -32,7 +32,7 @@ class GalleryController
     }
 
     /**
-     * @Route("/edit", name="gallery/edit")
+     * @Route("/gallery/edit", name="gallery/edit")
      * @Access("gallery: manage own galleries || gallery: manage all galleries")
      * @Request({"id": "int"})
      */
@@ -96,7 +96,7 @@ class GalleryController
 
 
     /**
-     * @Access("gallery: manage settings")
+     * @Access("system: access settings")
      */
     public function settingsAction()
     {
