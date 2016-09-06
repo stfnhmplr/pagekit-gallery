@@ -15,6 +15,9 @@
                 <div v-else>
                     <p class="uk-text-center">{{ '{1} %count% File selected|]1,Inf[ %count% Files selected' | transChoice files.length {count:files.length} }}</p>
                 </div>
+                <div v-if="progress" class="uk-progress uk-width-3-4 uk-align-center">
+                    <div class="uk-progress-bar" v-bind:style="{ width: progress + '%' }">{{ progress }}%</div>
+                </div>
             </div>
 
             <!-- upload-buttons -->
@@ -94,7 +97,8 @@
             return {
                 files: [],
                 form: {},
-                images: []
+                images: [],
+                progress: ''
             }
         },
 
@@ -153,10 +157,18 @@
 
                 this.form.append('id', this.gallery.id);
 
-                this.$http.post('api/gallery/upload', this.form)
+                this.$http.post('api/gallery/upload', this.form, {
+                    upload: {
+                        onprogress: (e) => {
+                            if (e.lengthComputable) {
+                                console.log(e.loaded+': '+e.total);
+                                this.progress = Math.ceil(e.loaded/e.total) * 100 + '%';
+                            }
+                        }
+                    }})
                         .then(function (res) {
-                    this.$notify(this.$trans((this.files.length > 1) ? 'Images uploaded' : 'Image uploaded'));
                     this.reset();
+                    this.$notify(this.$trans((this.files.length > 1) ? 'Images uploaded' : 'Image uploaded'));
                     this.$set('gallery.images', res.data.images)
 
                 });
@@ -165,6 +177,7 @@
             reset() {
                 document.getElementById("file-input").value = "";
                 this.$set('files', []);
+                this.$set('progress', '');
             },
 
             triggerFileInput() {
