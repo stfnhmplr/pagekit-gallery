@@ -17,7 +17,7 @@
                     <p class="uk-text-center">{{ '{1} %count% File selected|]1,Inf[ %count% Files selected' | transChoice files.length {count:files.length} }}</p>
                 </div>
                 <div v-if="progress" class="uk-progress uk-width-3-4 uk-align-center">
-                    <div class="uk-progress-bar" v-bind:style="{ width: progress + '%' }">{{ progress }}%</div>
+                    <div class="uk-progress-bar" v-bind:style="{width: progress}">{{ progress }}</div>
                 </div>
             </div>
 
@@ -178,10 +178,10 @@
                                 this.progress = Math.ceil(e.loaded/e.total) * 100 + '%';
                             }
                         }
-                    }})
-                        .then(function (res) {
-                    this.reset();
+                    }
+                }).then(function (res) {
                     this.$notify(this.$trans((this.files.length > 1) ? 'Images uploaded' : 'Image uploaded'));
+                    this.reset();
                     this.$set('gallery.images', res.data.images)
 
                 });

@@ -196,12 +196,10 @@ class GalleryApiController
             mkdir($path.'/thumbnails', 0755);
         }
 
-        $images = [];
         $files = self::rearrange($_FILES['images']);
 
         foreach($files as $file) {
 
-            //preg_match('/\.([0-9a-z]+)(?=[?#])|(\.)(?:[\w]+)$/', $file['name'], $match);
             preg_match('/^.*\.(jpg|jpeg|png)$/i', $file['name'], $match);
 
             if(!key_exists(0, $match)) {
