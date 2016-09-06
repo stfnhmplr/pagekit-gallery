@@ -264,6 +264,28 @@ class GalleryApiController
     }
 
     /**
+     * @Route("/maxsize", methods="GET")
+     */
+    public function maxSizeAction()
+    {
+        $post_max = self::parse_size(ini_get('post_max_size'));
+        $upload_max = self::parse_size(ini_get('upload_max_filesize'));
+
+        return ($upload_max > 0 && $upload_max < $post_max) ? $upload_max/(1024*1024) : $post_max/(1024*1024);
+    }
+
+    private function parse_size($size) {
+        $unit = preg_replace('/[^bkmgtpezy]/i', '', $size);
+        $size = preg_replace('/[^0-9\.]/', '', $size);
+        if ($unit) {
+            return round($size * pow(1024, stripos('bkmgtpezy', $unit[0])));
+        }
+        else {
+            return round($size);
+        }
+    }
+
+    /**
      * Rearrange $_FILES array
      * @param $arr
      * @return mixed

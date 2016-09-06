@@ -11,6 +11,7 @@
                 <img class="uk-align-center uk-margin-top" width="60" height="60" alt="Placeholder Image" src="/app/system/assets/images/placeholder-image.svg">
                 <p v-if="!files.length" class="uk-text-center">
                     <a @click.prevent="triggerFileInput">{{ 'Drag images here or select some' | trans }}</a>
+                    <span class="max-size">{{ 'max %size%MB per upload' | trans {size:maxSize} }}</span>
                 </p>
                 <div v-else>
                     <p class="uk-text-center">{{ '{1} %count% File selected|]1,Inf[ %count% Files selected' | transChoice files.length {count:files.length} }}</p>
@@ -82,6 +83,11 @@
     .pointer {
         cursor: pointer;
     }
+
+    .max-size {
+        display: block;
+        font-size: .9em;
+    }
 </style>
 
 <script>
@@ -98,8 +104,15 @@
                 files: [],
                 form: {},
                 images: [],
-                progress: ''
+                progress: '',
+                maxSize: ''
             }
+        },
+
+        ready: function() {
+            this.$resource('api/gallery/maxsize').get().then(function (res) {
+                this.$set('maxSize', res.data);
+            });
         },
 
         props: ['gallery'],
