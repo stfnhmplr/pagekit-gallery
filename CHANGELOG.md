@@ -5,6 +5,7 @@
 - added upload progress bar
 - added more languages
     - hungarian
+    - greek (not complete)
 
 ## 0.1.0 (August 21, 2016)
 - bugfix gallery link @frontend
