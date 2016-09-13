@@ -169,7 +169,7 @@ return [
             $scripts->register('gallery-dashboard', 'gallery:app/bundle/gallery-dashboard.js', '~dashboard');
             $scripts->register('gallery-meta', 'gallery:app/bundle/gallery-meta.js', '~gallery-edit');
             $scripts->register('gallery-images', 'gallery:app/bundle/gallery-images.js', '~gallery-edit');
-            //$scripts->register('minigallery', 'gallery:app/bundle/minigallery.js', ['~editor']);
+            $scripts->register('editor-plugin', 'gallery:app/bundle/editor-plugin.js', ['~editor']);
         }
 
     ]

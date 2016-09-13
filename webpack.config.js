@@ -4,6 +4,7 @@ module.exports = [
         entry: {
             "gallery-edit": "./app/views/admin/gallery-edit",
             "gallery-index": "./app/views/admin/gallery-index",
+            "editor-plugin": "./app/views/admin/editor-plugin",
             "gallery-dashboard": "./app/components/gallery-dashboard.vue",
             "settings": "./app/views/admin/settings",
             "link-gallery": "./app/components/link-gallery.vue",

@@ -1,11 +1,8 @@
 <?php $view->script('minigallery', '', ['uikit', 'uikit-slideshow']) ?>
 
 <div class="uk-slidenav-position uk-width-large-3-4 uk-container-center"
-     style="width:<?= $attributes['width'] ?>; height:<?= $attributes['height'] ?>;"
      data-uk-slideshow="">
-    <?php if ($attributes['title']) : ?>
-        <h3 class="uk-margin-remove"><?= $attributes['title'] ?></h3>
-    <?php endif ?>
+    <h3 class="uk-margin-remove"><?= $gallery->title ?></h3>
     <ul class="uk-slideshow">
         <?php foreach ($images as $image): ?>
         <li>
@@ -17,8 +14,11 @@
     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
     <?php endif ?>
-    <?php if ($attributes['description']) : ?>
-        <p class="uk-margin-remove"><?= $attributes['description'] ?></p>
+    <?php if ($gallery->description) : ?>
+        <p class="uk-margin-remove"><?= $gallery->description ?></p>
+    <?php endif ?>
+    <?php if ($attributes['showLink']) : ?>
+        <a href="<?= $view->url('@gallery/id', ['id' => $gallery->id]) ?>"><?= __('more') ?> <i class="uk-icon uk-icon-arrow-right"></i></a>
     <?php endif ?>
 </div>
 
