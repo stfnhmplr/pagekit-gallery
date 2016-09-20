@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.1 (August XX, 2016)
+## 0.2.0 (September 20, 2016)
 - add a mini slideshow with shortcode to your post or site
 - added upload progress bar
 - added more languages
