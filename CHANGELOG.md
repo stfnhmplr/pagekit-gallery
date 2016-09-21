@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.1 (September 21, 2016)
+- routing bugfix
+
 ## 0.2.0 (September 20, 2016)
 - add a mini slideshow with shortcode to your post or site
 - added upload progress bar

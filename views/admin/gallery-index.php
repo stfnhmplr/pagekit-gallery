@@ -29,7 +29,7 @@
         </div>
         <div data-uk-margin>
 
-            <a class="uk-button uk-button-primary" :href="$url.route('admin/gallery/edit')">{{ 'Add Gallery' | trans }}</a>
+            <a class="uk-button uk-button-primary" :href="$url.route('admin/gallery/gallery/edit')">{{ 'Add Gallery' | trans }}</a>
 
         </div>
     </div>

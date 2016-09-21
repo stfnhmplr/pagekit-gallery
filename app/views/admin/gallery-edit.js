@@ -46,7 +46,7 @@ window.Gallery = {
                 var data = res.data;
 
                 if (!this.gallery.id) {
-                    window.history.replaceState({}, '', this.$url.route('admin/gallery/edit', {id: data.gallery.id}))
+                    window.history.replaceState({}, '', this.$url.route('admin/gallery/gallery/edit', {id: data.gallery.id}))
                 }
 
                 this.$set('gallery', data.gallery);
