@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2 (September XX, 2016)
+- bugfix thumbnail height
+- bugfix filename
+
 ## 0.2.1 (September 21, 2016)
 - routing bugfix
 

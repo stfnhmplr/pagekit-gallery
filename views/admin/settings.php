@@ -126,7 +126,7 @@
                                 {{ 'Width' | trans }} (px)
                             </p>
                             <p>
-                                <input class="uk-form-width-small" v-model="config.images.thumbnail_width" type="number">
+                                <input class="uk-form-width-small" v-model="config.images.thumbnail_height" type="number">
                                 {{ 'Height' | trans }} (px)
                             </p>
                         </div>

@@ -208,6 +208,7 @@ class GalleryApiController
 
             $file['name'] = str_replace($match[0], '', $file['name']);
             $new_filename = strtolower(time()."_".App::filter($file['name'], 'slugify').$match[0]);
+            $new_filename = str_replace(' ', '_', $new_filename);
 
             $img = GImage::open($file['tmp_name']);
 
