@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.2 (September XX, 2016)
+## 0.2.2 (September 27, 2016)
 - bugfix thumbnail height
 - bugfix filename
 
