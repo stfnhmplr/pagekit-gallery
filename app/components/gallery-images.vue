@@ -8,7 +8,7 @@
             <!-- upload-field -->
             <div class="file-upload uk-container-center uk-width-large-3-4 uk-margin">
                 <input id="file-input" type="file" name="files" multiple="multiple" accept="image/jpeg,image/png" @change="onFileChange">
-                <img class="uk-align-center uk-margin-top" width="60" height="60" alt="Placeholder Image" src="/app/system/assets/images/placeholder-image.svg">
+                <img class="uk-align-center uk-margin-top" width="60" height="60" alt="Placeholder Image" :src="$url('app/system/assets/images/placeholder-image.svg')">
                 <p v-if="!files.length" class="uk-text-center">
                     <a @click.prevent="triggerFileInput">{{ 'Drag images here or select some' | trans }}</a>
                     <span class="max-size">{{ 'max %size%MB per upload' | trans {size:maxSize} }}</span>
@@ -31,7 +31,7 @@
             <h3 class="uk-h1 uk-text-muted uk-text-center" v-if="!gallery.images">{{ 'No images found' | trans }}</h3>
             <div class="uk-grid uk-grid-width-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-5" v-else>
                 <div class="uk-text-center" v-for="image in gallery.images">
-                    <img class="uk-thumbnail pointer" :src="'/storage/shw-gallery/thumbnails/tn_' + image.filename" @click="editImage(image)"/>
+                    <img class="uk-thumbnail pointer" :src="$url('storage/shw-gallery/thumbnails/tn_' + image.filename)" @click="editImage(image)"/>
                 </div>
             </div>
         </div>
