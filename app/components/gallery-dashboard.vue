@@ -39,7 +39,7 @@
     <div class="uk-panel" v-else>
         <h3 v-if="widget.title">{{ widget.title }}</h3>
         <div v-if="widget.showTeaser" class="uk-panel-teaser">
-            <img v-if="widget.teaser" :src="'/storage/shw-gallery/' + widget.teaser.filename" :alt="widget.teaser.title"/>
+            <img v-if="widget.teaser" :src="$url('storage/shw-gallery/' + widget.teaser.filename)" :alt="widget.teaser.title"/>
         </div>
         <ul class="uk-subnav">
             <li class="subtitle">

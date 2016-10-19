@@ -29,7 +29,7 @@
 
             <!-- images -->
             <h3 class="uk-h1 uk-text-muted uk-text-center" v-if="!gallery.images">{{ 'No images found' | trans }}</h3>
-            <div class="uk-grid uk-grid-width-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-5" v-else>
+            <div class="uk-grid uk-grid-width-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-5" v-else data-uk-grid-margin>
                 <div class="uk-text-center" v-for="image in gallery.images">
                     <img class="uk-thumbnail pointer" :src="$url('storage/shw-gallery/thumbnails/tn_' + image.filename)" @click="editImage(image)"/>
                 </div>
