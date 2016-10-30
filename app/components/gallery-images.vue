@@ -17,7 +17,7 @@
                     <p class="uk-text-center">{{ '{1} %count% File selected|]1,Inf[ %count% Files selected' | transChoice files.length {count:files.length} }}</p>
                 </div>
                 <div v-if="progress" class="uk-progress uk-width-3-4 uk-align-center">
-                    <div class="uk-progress-bar" v-bind:style="{width: progress}">{{ progress }}</div>
+                    <div class="uk-progress-bar" :style="{width: progress + '%'}">{{ progress }}</div>
                 </div>
             </div>
 
@@ -104,7 +104,7 @@
                 files: [],
                 form: {},
                 images: [],
-                progress: '',
+                progress: 0,
                 maxSize: ''
             }
         },
@@ -165,8 +165,9 @@
                     this.form.append('images[' + key + ']', this.files[key]);
                 }
 
-                this.form.delete('images[item]');
-                this.form.delete('images[length]');
+                //only supported by chrome and firefox
+                //this.form.delete('images[item]');
+                //this.form.delete('images[length]');
 
                 this.form.append('id', this.gallery.id);
 
@@ -175,7 +176,7 @@
                         onprogress: (e) => {
                             if (e.lengthComputable) {
                                 console.log(e.loaded+': '+e.total);
-                                this.progress = Math.ceil(e.loaded/e.total) * 100 + '%';
+                                this.$set('progress', Math.ceil(e.loaded/e.total) * 100);
                             }
                         }
                     }
