@@ -29,6 +29,7 @@ class SlideshowPlugin implements EventSubscriberInterface
 
                 $attributes = array_merge(array_fill_keys(['id', 'showLink', 'limit'], ''),
                 array_combine($attributes[1], $attributes[2]));
+                $attributes['showLink'] = ($attributes['showLink'] === "true") ? true : false;
 
                 $gallery = Gallery::find($attributes['id']);
 

@@ -12,7 +12,7 @@
                     <label for="form-gallery-id" class="uk-form-label">{{ 'Gallery' | trans }}</label>
                     <div class="uk-form-controls">
                         <select id="form-gallery-id" class="uk-width-1-1" v-model="gallery.id">
-                            <option v-for="(id,g) in galleries" value="{{id}}">{{ g.title }}</option>
+                            <option v-for="g in galleries" value="{{g.id}}">{{ g.title }}</option>
                         </select>
                     </div>
                 </div>
@@ -27,7 +27,6 @@
                         <input id="form-gallery-link" type="checkbox" v-model="gallery.showLink">
                     </div>
                 </div>
-
 
                 <div class="uk-modal-footer uk-text-right">
                     <button class="uk-button uk-button-link uk-modal-close" type="button">{{ 'Cancel' | trans }}</button>
@@ -46,7 +45,11 @@
         data: function () {
             return {
                 galleries: [],
-                gallery: {id: -1}
+                gallery: {
+                    id: -1,
+                    showLink: true,
+                    limit: ''
+                }
             }
         },
 
@@ -58,6 +61,7 @@
 
         ready: function () {
             this.$refs.modal.open();
+            this.$set('gallery.showLink', true);
         },
 
         methods: {

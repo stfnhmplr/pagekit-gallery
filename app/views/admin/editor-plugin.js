@@ -71,7 +71,7 @@ module.exports = {
 
             return '<gallery-preview id="' + options.id + '" ' +
                 'limit="' + options.limit + '" ' +
-                'show-link="' + options.showLink + '"' +
+                'showLink="' + options.showLink + '"' +
                 '></gallery-preview>';
         }
 
