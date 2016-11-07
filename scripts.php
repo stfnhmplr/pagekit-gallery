@@ -99,22 +99,5 @@ return [
             $util->dropTable('@images');
         }
 
-    },
-
-    /*
-     * Runs all updates that are newer than the current version.
-     *
-     */
-    'updates' => [
-
-        '0.5.0' => function ($app) {
-
-        },
-
-        '0.9.0' => function ($app) {
-
-        },
-
-    ],
-
+    }
 ];

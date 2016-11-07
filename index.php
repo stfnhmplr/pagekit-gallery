@@ -1,62 +1,31 @@
 <?php
 
-use Pagekit\Application;
 use Shw\Gallery\Events\RouteListener;
 use Shw\Gallery\Content\SlideshowPlugin;
 
-/*
- * This array is the module definition.
- * It's used by Pagekit to load your extension and register all things
- * that your extension provides (routes, menu items, php classes etc)
- */
 return [
 
     'name' => 'gallery',
     'type' => 'extension',
-    'main' => function (Application $app) {
 
-    },
-
-    /*
-     * Register all namespaces to be loaded.
-     * Map from namespace to folder where the classes are located.
-     * Remember to escape backslashes with a second backslash.
-     */
     'autoload' => [
 
         'Shw\\Gallery\\' => 'src',
 
     ],
 
-    /*
-     * Define nodes. A node is similar to a route with the difference
-     * that it can be placed anywhere in the menu structure. The
-     * resulting route is therefore determined on runtime.
-     */
     'nodes' => [
 
         'Gallery' => [
-
-            // The name of the node route
             'name' => '@gallery',
-
-            // Label to display in the backend
             'label' => 'Gallery',
-
-            // The controller for this node. Each controller action will be mounted
             'controller' => 'Shw\\Gallery\\Controller\\SiteController',
-
-            // A unique node that cannot be deleted, resides in "Not Linked" by default
             'protected' => true
 
         ]
 
     ],
 
-
-    /*
-     * Define routes.
-     */
     'routes' => [
 
         '/gallery' => [
@@ -65,6 +34,7 @@ return [
                 'Shw\\Gallery\\Controller\\GalleryController'
             ]
         ],
+
         '/api/gallery' => [
             'name' => '@gallery/api',
             'controller' => [
@@ -75,9 +45,6 @@ return [
 
     ],
 
-    /*
-     * Define menu items for the backend.
-     */
     'menu' => [
 
         'gallery' => [
@@ -89,7 +56,6 @@ return [
         ],
 
         'gallery: galleries' => [
-
             'parent' => 'gallery',
             'label' => 'Galleries',
             'icon' => 'gallery:icon.svg',
@@ -108,10 +74,6 @@ return [
 
     ],
 
-    /*
-     * Define permissions.
-     * Will be listed in backend and can then be assigned to certain roles.
-     */
     'permissions' => [
 
         'gallery: manage own galleries' => [
@@ -128,15 +90,8 @@ return [
 
     ],
 
-    /*
-     * Link to a settings screen from the extensions listing.
-     */
     'settings' => '@gallery/settings',
 
-    /*
-     * Default module configuration.
-     * Can be overwritten by changed config during runtime.
-     */
     'config' => [
         'gallery' => [
             'title' => 'Gallery',
@@ -152,9 +107,6 @@ return [
         ]
     ],
 
-    /*
-     * Listen to events.
-     */
     'events' => [
 
         'boot' => function ($event, $app) {
