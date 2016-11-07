@@ -1,4 +1,4 @@
-<?php $view->style('gallery', 'extensions/gallery/assets/css/gallery.css', 'uikit')?>
+<?php $view->style('gallery', 'packages/shw/gallery/assets/css/gallery.css', 'uikit')?>
 
 <?php if($shwGallery->config('gallery.back_button')): ?>
     <a class="uk-button" href="<?= $view->url('@gallery') ?>"><?= __('back') ?></a>

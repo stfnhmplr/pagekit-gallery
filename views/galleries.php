@@ -1,4 +1,4 @@
-<?php $view->style('gallery', 'extensions/gallery/assets/css/gallery.css', 'uikit')?>
+<?php $view->style('gallery', 'packages/shw/gallery/assets/css/gallery.css', 'uikit')?>
 
 <h1><?= $shwGallery->config('gallery.title') ?></h1>
 
