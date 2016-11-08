@@ -57,7 +57,8 @@ module.exports = {
                 .$appendTo('body')
                 .$on('select', function (gallery) {
                     var replacement = '[gallery id="' + gallery.id + '"';
-                    replacement += ' limit="' + gallery.limit + '" showLink="' + gallery.showLink + '"/]';
+                    (gallery.limit > 1) ? replacement += ' limit="' + gallery.limit +'"' : '';
+                    replacement += ' showLink="' + gallery.showLink + '"/]';
                     editor.editor.replaceRange(replacement, cursor);
                 });
         },
@@ -65,14 +66,15 @@ module.exports = {
         replaceInPreview: function (data) {
             var options = {
                 id: data.matches[1].match(/id="(.+?)"/)[1],
-                limit: data.matches[1].match(/limit="(.+?)"/)[1],
+                limit: (data.matches[1].match(/limit="(.+?)"/)) ? data.matches[1].match(/limit="(.+?)"/)[1] : false,
                 showLink: data.matches[1].match(/showLink="(.+?)"/)[1],
             };
 
-            return '<gallery-preview id="' + options.id + '" ' +
-                'limit="' + options.limit + '" ' +
-                'showLink="' + options.showLink + '"' +
-                '></gallery-preview>';
+            var preview = '<gallery-preview :id="' + options.id + '" ';
+            preview += (options.limit) ? ':limit="' + options.limit + '" ' : '';
+            preview += ':show-link="' + options.showLink + '"></gallery-preview>';
+
+            return preview
         }
 
     },

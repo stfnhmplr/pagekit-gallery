@@ -35,7 +35,7 @@ class SlideshowPlugin implements EventSubscriberInterface
 
                 $query = Image::query()->where(['gallery_id' => intval($attributes['id'])]);
 
-                if(key_exists('limit', $attributes)) {
+                if($attributes['limit'] > 0) {
                     $query = $query->limit(intval($attributes['limit']));
                 }
 
