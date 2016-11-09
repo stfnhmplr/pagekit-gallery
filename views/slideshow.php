@@ -1,4 +1,4 @@
-<?php $view->script('minigallery', '', ['uikit', 'uikit-slideshow']) ?>
+<?php $view->script('minigallery', 'gallery:app/bundle/slideshow.js', ['uikit', 'uikit-slideshow']) ?>
 
 <div class="uk-slidenav-position uk-width-large-3-4 uk-container-center"
      data-uk-slideshow="">
