@@ -2,6 +2,8 @@
 
 ## 0.2.4 (November XX, 2016)
 - bugfix image upload with ie, edge and safari
+- bugfix script and style paths
+- bugfix slideshow without limit
 
 ## 0.2.3 (October 19, 2016)
 - bugfix image src
