@@ -70,6 +70,14 @@ return [
             'url' => '@gallery/settings',
             'active' => '@gallery/settings*',
             'access' => 'system: access settings'
+        ],
+
+        'gallery: whatsNew' => [
+            'parent' => 'gallery',
+            'label' => 'Changelog',
+            'url' => '@gallery/changelog',
+            'active' => '@gallery/changelog',
+            'access' => 'gallery: manage own galleries',
         ]
 
     ],

@@ -1,10 +1,11 @@
 # Changelog
 
 ## 0.2.4 (November XX, 2016)
-- bugfix image upload with ie, edge and safari
-- bugfix script and style paths
+- fix image upload with ie, edge and safari
+- fix script and style paths
 - insert slideshows without image limit
-- new editor icon
+- added new editor icon
+- added changelog to admin view
 
 ## 0.2.3 (October 19, 2016)
 - bugfix image src

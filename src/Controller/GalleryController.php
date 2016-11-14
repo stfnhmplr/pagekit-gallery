@@ -3,6 +3,7 @@
 namespace Shw\Gallery\Controller;
 
 use Pagekit\Application as App;
+use Pagekit\Markdown\Markdown;
 use Shw\Gallery\Model\Gallery;
 use Pagekit\User\Model\Role;
 
@@ -108,6 +109,24 @@ class GalleryController
             '$data' => [
                 'config' => App::module('gallery')->config()
             ]
+        ];
+    }
+
+    /**
+     * @Access("gallery: manage own galleries || gallery: manage all galleries")
+     */
+    public function changelogAction()
+    {
+        $markdown = new Markdown();
+        $content = $markdown->parse(
+            file_get_contents(App::path().App::url()->getStatic('packages/shw/gallery/CHANGELOG.md'))
+        );
+        return [
+            '$view' => [
+                'title' => __('Changelog'),
+                'name'  => 'gallery:views/admin/changelog.php'
+            ],
+            'content' => $content
         ];
     }
 }
