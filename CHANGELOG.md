@@ -6,6 +6,7 @@
 - insert slideshows without image limit
 - added new editor icon
 - added changelog to admin view
+- removed "beta" from version number to fix uninstall issue
 
 ## 0.2.3 (October 19, 2016)
 - bugfix image src

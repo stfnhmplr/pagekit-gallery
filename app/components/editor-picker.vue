@@ -8,29 +8,33 @@
                     <h2>{{ 'Add Gallery' | trans }}</h2>
                 </div>
 
-                <div class="uk-form-row">
-                    <label for="form-gallery-id" class="uk-form-label">{{ 'Gallery' | trans }}</label>
-                    <div class="uk-form-controls">
-                        <select id="form-gallery-id" class="uk-width-1-1" v-model="gallery.id">
-                            <option v-for="g in galleries" value="{{g.id}}">{{ g.title }}</option>
-                        </select>
+                <div v-if="!galleries.length" class="uk-form-row">
+                    <p>{{ 'Please add and publish some galleries first' | trans }}</p>
+                </div>
+                <div v-else>
+                    <div class="uk-form-row">
+                        <label for="form-gallery-id" class="uk-form-label">{{ 'Gallery' | trans }}</label>
+                        <div class="uk-form-controls">
+                            <select id="form-gallery-id" class="uk-width-1-1" v-model="gallery.id">
+                                <option v-for="g in galleries" value="{{g.id}}">{{ g.title }}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="uk-form-row uk-grid uk-form-stacked">
+                        <div class="uk-width-1-2">
+                            <label for="form-gallery-limit" class="uk-form-label">{{ 'Limit' | trans }}</label>
+                            <input id="form-gallery-limit" type="number" min="1" v-model="gallery.limit">
+                        </div>
+                        <div class="uk-width-1-2">
+                            <label for="form-gallery-link" class="uk-form-label">{{ 'Show Link?' | trans }}</label>
+                            <input id="form-gallery-link" type="checkbox" v-model="gallery.showLink">
+                        </div>
                     </div>
                 </div>
-
-                <div class="uk-form-row uk-grid uk-form-stacked">
-                    <div class="uk-width-1-2">
-                        <label for="form-gallery-limit" class="uk-form-label">{{ 'Limit' | trans }}</label>
-                        <input id="form-gallery-limit" type="number" min="1" v-model="gallery.limit">
-                    </div>
-                    <div class="uk-width-1-2">
-                        <label for="form-gallery-link" class="uk-form-label">{{ 'Show Link?' | trans }}</label>
-                        <input id="form-gallery-link" type="checkbox" v-model="gallery.showLink">
-                    </div>
-                </div>
-
                 <div class="uk-modal-footer uk-text-right">
                     <button class="uk-button uk-button-link uk-modal-close" type="button">{{ 'Cancel' | trans }}</button>
-                    <button class="uk-button uk-button-link" type="submit">{{ 'Update' | trans }}</button>
+                    <button v-if="galleries.length" class="uk-button uk-button-link" type="submit">{{ 'Update' | trans }}</button>
                 </div>
 
             </form>
@@ -46,7 +50,7 @@
             return {
                 galleries: [],
                 gallery: {
-                    id: -1,
+                    id: '',
                     showLink: true,
                     limit: ''
                 }
@@ -70,7 +74,7 @@
             },
             update: function () {
                 this.$refs.modal.close();
-                this.$emit('select', _.merge(this.galleries[this.gallery.id], this.gallery));
+                this.$emit('select', this.gallery);
             }
         }
     };
