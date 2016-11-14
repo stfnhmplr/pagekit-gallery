@@ -38,19 +38,21 @@ window.Gallery = {
         save: function () {
 
             var data = {gallery: this.gallery, id: this.gallery.id};
-
             this.$broadcast('save', data);
 
+            if(this.gallery.images.length < 1 && (this.gallery.status == 2 || this.gallery.status == 4)) {
+                this.$notify(this.$trans('Please add some images before you publish', 'danger'));
+                return false;
+            }
+
+            console.log(this.gallery.status);
+
             this.resource.save({id: this.gallery.id}, data).then(function (res) {
-
                 var data = res.data;
-
                 if (!this.gallery.id) {
                     window.history.replaceState({}, '', this.$url.route('admin/gallery/gallery/edit', {id: data.gallery.id}))
                 }
-
                 this.$set('gallery', data.gallery);
-
                 this.$notify(this.$trans('Gallery saved'));
 
             }, function (res) {

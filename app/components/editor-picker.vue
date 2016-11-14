@@ -54,7 +54,7 @@
         },
 
         created: function () {
-            this.$resource('api/gallery{/id}').query().then(function (res) {
+            this.$resource('api/gallery{/id}').query({filter: {minigallery: true}}).then(function (res) {
                 this.galleries = res.data.galleries;
             });
         },

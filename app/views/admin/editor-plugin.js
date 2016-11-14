@@ -14,7 +14,7 @@ module.exports = {
 
         editor.addButton('gallery', {
             title: 'Gallery',
-            label: '<i class="uk-icon-clone"></i>'
+            label: '<img src="' + this.$url('packages/shw/gallery/assets/img/editor-icon.svg') + '" width="12px" height="12px"></img>'
         });
 
         editor.options.toolbar.push('gallery');

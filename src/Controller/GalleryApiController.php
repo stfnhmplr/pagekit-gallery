@@ -20,7 +20,7 @@ class GalleryApiController
     public function indexAction($filter = [], $page = 0)
     {
         $query  = Gallery::query();
-        $filter = array_merge(array_fill_keys(['photograph', 'status', 'search', 'author', 'order', 'limit'], ''), $filter);
+        $filter = array_merge(array_fill_keys(['photograph', 'status', 'search', 'author', 'order', 'limit', 'minigallery'], ''), $filter);
 
         extract($filter, EXTR_SKIP);
 
@@ -30,6 +30,11 @@ class GalleryApiController
 
         if (is_numeric($status)) {
             $query->where(['status' => (int) $status]);
+        }
+
+        //fetch only published and minigallery-only galleries from db
+        if ($minigallery) {
+            $query->whereIn('status', [Gallery::STATUS_PUBLISHED, Gallery::STATUS_MINIGALLERY]);
         }
 
         if ($search) {
@@ -162,7 +167,6 @@ class GalleryApiController
         foreach ($galleries as $data) {
             $this->saveAction($data, isset($data['id']) ? $data['id'] : 0);
         }
-
         return ['message' => 'success'];
     }
 
@@ -175,7 +179,6 @@ class GalleryApiController
         foreach (array_filter($ids) as $id) {
             $this->deleteAction($id);
         }
-
         return ['message' => 'success'];
     }
 
