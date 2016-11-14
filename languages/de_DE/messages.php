@@ -84,5 +84,6 @@
     "max %size%MB per upload" => "maximal %size%MB pro Upload",
     "more" => "mehr",
     "Show Link?" => "Link anzeigen?",
-    "Limit" => "Limit"
+    "Limit" => "Limit",
+    "Please add and publish a gallery first!" => "Bitte erstelle und veröffentliche mindestens eine Galerie!"
 );

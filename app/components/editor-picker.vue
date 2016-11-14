@@ -9,7 +9,7 @@
                 </div>
 
                 <div v-if="!galleries.length" class="uk-form-row">
-                    <p>{{ 'Please add and publish some galleries first' | trans }}</p>
+                    <p>{{ 'Please add and publish a gallery first!' | trans }}</p>
                 </div>
                 <div v-else>
                     <div class="uk-form-row">
