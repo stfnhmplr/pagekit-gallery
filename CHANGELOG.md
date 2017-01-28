@@ -1,6 +1,10 @@
 # Changelog
 
-## 0.2.4 (November XX, 2016)
+## 0.2.5 (January 28, 2017)
+- fixed image quality change
+- added galleries per page to config
+
+## 0.2.4 (November 14, 2016)
 - fix image upload with ie, edge and safari
 - fix script and style paths
 - insert slideshows without image limit
