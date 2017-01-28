@@ -53,7 +53,7 @@ class GalleryApiController
             $order = [1 => 'date', 2 => 'desc'];
         }
 
-        $limit = 10; //TODO add limit to settings (int) $limit ?: App::module('gallery')->config('gallery.galleries_per_page');
+        $limit = (int) App::module('gallery')->config('gallery.galleries_per_page');
         $count = $query->count();
         $pages = ceil($count / $limit);
         $page = max(0, min($pages - 1, $page));

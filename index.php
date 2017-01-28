@@ -103,7 +103,8 @@ return [
     'config' => [
         'gallery' => [
             'title' => 'Gallery',
-            'back_button' => false
+            'back_button' => false,
+            'galleries_per_page' => 10
         ],
 
         'images' => [
