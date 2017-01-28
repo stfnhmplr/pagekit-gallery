@@ -3,6 +3,7 @@
 ## 0.2.5 (January 28, 2017)
 - fixed image quality change
 - added galleries per page to config
+- added image preview to edit screen
 
 ## 0.2.4 (November 14, 2016)
 - fix image upload with ie, edge and safari
