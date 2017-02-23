@@ -17,7 +17,7 @@
                     <p class="uk-text-center">{{ '{1} %count% File selected|]1,Inf[ %count% Files selected' | transChoice files.length {count:files.length} }}</p>
                 </div>
                 <div v-if="progress" class="uk-progress uk-width-3-4 uk-align-center">
-                    <div class="uk-progress-bar" :style="{width: progress + '%'}">{{ progress }}</div>
+                    <div class="uk-progress-bar" :style="{width: progress + '%'}">{{ progress + '%' }}</div>
                 </div>
             </div>
 
@@ -141,11 +141,9 @@
             },
 
             editImage: function (img) {
-
                 if (!this.modal) {
                     this.modal = UIkit.modal(this.$els.modal);
                 }
-
                 this.$set('img', img);
                 this.modal.show();
             },
@@ -162,9 +160,7 @@
             },
 
             upload() {
-
                 this.form = new FormData();
-
                 for(var key in this.files) {
                     this.form.append('images[' + key + ']', this.files[key]);
                 }
@@ -172,15 +168,13 @@
                 //only supported by chrome and firefox
                 //this.form.delete('images[item]');
                 //this.form.delete('images[length]');
-
                 this.form.append('id', this.gallery.id);
-
                 this.$http.post('api/gallery/upload', this.form, {
                     upload: {
                         onprogress: (e) => {
                             if (e.lengthComputable) {
                                 console.log(e.loaded+': '+e.total);
-                                this.$set('progress', Math.ceil(e.loaded/e.total) * 100);
+                                this.$set('progress', Math.ceil(e.loaded/e.total * 100));
                             }
                         }
                     }
@@ -188,22 +182,17 @@
                     this.$notify(this.$trans((this.files.length > 1) ? 'Images uploaded' : 'Image uploaded'));
                     this.reset();
                     this.$set('gallery.images', res.data.images)
-
                 });
             },
-
             reset() {
                 document.getElementById("file-input").value = "";
                 this.$set('files', []);
                 this.$set('progress', '');
             },
-
             triggerFileInput() {
                 document.getElementById("file-input").click();
             }
         }
     };
-
     window.Gallery.components['gallery-images'] = module.exports;
-
 </script>
