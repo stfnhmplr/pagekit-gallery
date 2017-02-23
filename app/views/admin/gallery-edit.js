@@ -45,8 +45,6 @@ window.Gallery = {
                 return false;
             }
 
-            console.log(this.gallery.status);
-
             this.resource.save({id: this.gallery.id}, data).then(function (res) {
                 var data = res.data;
                 if (!this.gallery.id) {
@@ -63,9 +61,7 @@ window.Gallery = {
     },
 
     components: {
-
         settings: require('../../components/gallery-settings.vue')
-
     }
 
 };
