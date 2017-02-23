@@ -173,7 +173,6 @@
                     upload: {
                         onprogress: (e) => {
                             if (e.lengthComputable) {
-                                console.log(e.loaded+': '+e.total);
                                 this.$set('progress', Math.ceil(e.loaded/e.total * 100));
                             }
                         }
