@@ -3,7 +3,6 @@
 namespace Shw\Gallery\Controller;
 
 use Pagekit\Application as App;
-
 use Shw\Gallery\Model\Image;
 
 /**
@@ -12,7 +11,6 @@ use Shw\Gallery\Model\Image;
  */
 class ImageApiController
 {
-
     /**
      * @Route("/", methods="POST")
      * @Route("/{id}", methods="POST", requirements={"id"="\d+"})
@@ -24,12 +22,12 @@ class ImageApiController
             App::abort(404, __('Image not found.'));
         }
 
-        if(!App::user()->hasAccess('gallery: manage all galleries')) {
+        if (!App::user()->hasAccess('gallery: manage all galleries')) {
             $data['user_id'] = App::user()->id;
         }
 
         // user without universal access can only edit their own galleries
-        if(!App::user()->hasAccess('gallery: manage all galleries') && !App::user()->hasAccess('gallery: manage own galleries') && $image->user_id !== App::user()->id) {
+        if (!App::user()->hasAccess('gallery: manage all galleries') && !App::user()->hasAccess('gallery: manage own galleries') && $image->user_id !== App::user()->id) {
             App::abort(400, __('Access denied'));
         }
 
@@ -47,13 +45,12 @@ class ImageApiController
     public function deleteAction($id)
     {
         if ($image = Image::find($id)) {
-
             if (!App::user()->hasAccess('gallery: manage all galleries') && !App::user()->hasAccess('gallery: manage own galleries') && $image->user_id !== App::user()->id) {
                 App::abort(400, __('Access denied.'));
             }
 
-            unlink('storage/shw-gallery/' . $image->filename);
-            unlink('storage/shw-gallery/thumbnails/tn_' . $image->filename);
+            unlink('storage/shw-gallery/'.$image->filename);
+            unlink('storage/shw-gallery/thumbnails/tn_'.$image->filename);
 
             $image->delete();
 

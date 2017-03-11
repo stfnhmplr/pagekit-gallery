@@ -1,12 +1,12 @@
 <?php $view->style('gallery', 'gallery:assets/css/gallery.css', 'uikit')?>
 
-<?php if($shwGallery->config('gallery.back_button')): ?>
+<?php if ($shwGallery->config('gallery.back_button')): ?>
     <a class="uk-button" href="<?= $view->url('@gallery') ?>"><?= __('back') ?></a>
 <?php endif; ?>
 
 <h1><?= $gallery->title ?></h1>
 
-<?php if($gallery->photograph): ?>
+<?php if ($gallery->photograph): ?>
 <?= __('Photograph').': '.$gallery->photograph ?>
 <?php endif; ?>
 

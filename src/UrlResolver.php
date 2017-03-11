@@ -3,8 +3,8 @@
 namespace Shw\Gallery;
 
 use Pagekit\Application as App;
-use Shw\Gallery\Model\Gallery;
 use Pagekit\Routing\ParamsResolverInterface;
+use Shw\Gallery\Model\Gallery;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class UrlResolver implements ParamsResolverInterface
@@ -52,7 +52,6 @@ class UrlResolver implements ParamsResolverInterface
         }
 
         if (!$id) {
-
             if (!$gallery = Gallery::where(compact('slug'))->first()) {
                 App::abort(404, 'Gallery not found');
             }
@@ -62,6 +61,7 @@ class UrlResolver implements ParamsResolverInterface
         }
 
         $parameters['id'] = $id;
+
         return $parameters;
     }
 
@@ -73,7 +73,6 @@ class UrlResolver implements ParamsResolverInterface
         $id = $parameters['id'];
 
         if (!isset($this->cacheEntries[$id])) {
-
             if (!$gallery = Gallery::where(compact('id'))->first()) {
                 throw new RouteNotFoundException('Gallery not found');
             }
@@ -86,7 +85,7 @@ class UrlResolver implements ParamsResolverInterface
         preg_match_all('#{([a-z]+)}#i', self::getPermalink(), $matches);
 
         if ($matches) {
-            foreach($matches[1] as $attribute) {
+            foreach ($matches[1] as $attribute) {
                 if (isset($meta[$attribute])) {
                     $parameters[$attribute] = $meta[$attribute];
                 }
@@ -94,6 +93,7 @@ class UrlResolver implements ParamsResolverInterface
         }
 
         unset($parameters['id']);
+
         return $parameters;
     }
 
@@ -114,14 +114,12 @@ class UrlResolver implements ParamsResolverInterface
         static $permalink;
 
         if (null === $permalink) {
-
             $gallery = App::module('gallery');
             $permalink = $gallery->config('permalink.type');
 
             if ($permalink == 'custom') {
                 $permalink = $gallery->config('permalink.custom');
             }
-
         }
 
         return $permalink;

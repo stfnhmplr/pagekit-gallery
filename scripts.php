@@ -6,7 +6,6 @@ return [
      * Installation hook.
      */
     'install' => function ($app) {
-
         $util = $app['db']->getUtility();
 
         if ($util->tableExists('@galleries') === false) {
@@ -26,8 +25,8 @@ return [
             });
         }
 
-        if($util->tableExists('@images') === false) {
-           $util->createTable('@images', function ($table) {
+        if ($util->tableExists('@images') === false) {
+            $util->createTable('@images', function ($table) {
                 $table->addColumn('id', 'integer', ['unsigned' => true, 'length' => 10, 'autoincrement' => true]);
                 $table->addColumn('gallery_id', 'integer', ['unsigned' => true, 'length' => 10]);
                 $table->addColumn('user_id', 'integer', ['unsigned' => true, 'length' => 10, 'default' => 0]);
@@ -37,7 +36,7 @@ return [
                 $table->addColumn('data', 'json_array', ['notnull' => false]);
                 $table->addColumn('modified', 'datetime');
                 $table->setPrimaryKey(['id']);
-           });
+            });
         }
     },
 
@@ -45,7 +44,6 @@ return [
      * Uninstall hook
      */
     'uninstall' => function ($app) {
-
         $app['config']->remove('gallery');
 
         $util = $app['db']->getUtility();
@@ -57,6 +55,5 @@ return [
         if ($util->tableExists('@images')) {
             $util->dropTable('@images');
         }
-
-    }
+    },
 ];

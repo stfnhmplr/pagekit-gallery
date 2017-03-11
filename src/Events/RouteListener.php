@@ -3,8 +3,8 @@
 namespace Shw\Gallery\Events;
 
 use Pagekit\Application as App;
-use Shw\Gallery\UrlResolver;
 use Pagekit\Event\EventSubscriberInterface;
+use Shw\Gallery\UrlResolver;
 
 class RouteListener implements EventSubscriberInterface
 {
@@ -40,10 +40,10 @@ class RouteListener implements EventSubscriberInterface
     public function subscribe()
     {
         return [
-            'request' => ['onAppRequest', 130],
-            'route.configure' => 'onConfigureRoute',
-            'model.gallery.saved' => 'clearCache',
-            'model.gallery.deleted' => 'clearCache'
+            'request'               => ['onAppRequest', 130],
+            'route.configure'       => 'onConfigureRoute',
+            'model.gallery.saved'   => 'clearCache',
+            'model.gallery.deleted' => 'clearCache',
         ];
     }
 }

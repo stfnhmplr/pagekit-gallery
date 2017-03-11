@@ -51,19 +51,19 @@ class SiteController
 
         return [
             '$view' => [
-                'title' => __('Galleries'),
-                'name' => 'gallery/galleries.php',
+                'title'     => __('Galleries'),
+                'name'      => 'gallery/galleries.php',
                 'link:feed' => [
-                    'rel' => 'alternate',
-                    'href' => App::url('@blog/feed'),
+                    'rel'   => 'alternate',
+                    'href'  => App::url('@blog/feed'),
                     'title' => App::module('system/site')->config('title'),
                     //'type' => App::feed()->create($this->gallery->config('feed.type'))->getMIMEType()
-                ]
+                ],
             ],
             'shwGallery' => $this->gallery,
-            'galleries' => $galleries,
-            'total' => $total,
-            'page' => $page
+            'galleries'  => $galleries,
+            'total'      => $total,
+            'page'       => $page,
         ];
     }
 
@@ -85,10 +85,10 @@ class SiteController
         $description = $gallery->get('meta.og:description');
         if (!$description) {
             $description = strip_tags($gallery->description);
-            $description = rtrim(mb_substr($description, 0, 150), " \t\n\r\0\x0B.,") . '...';
+            $description = rtrim(mb_substr($description, 0, 150), " \t\n\r\0\x0B.,").'...';
         }
 
-        if(!$images = Image::query()->where(['gallery_id' => $gallery->id])->get()) {
+        if (!$images = Image::query()->where(['gallery_id' => $gallery->id])->get()) {
             App::abort(404, __('No images found'));
         }
 
@@ -96,19 +96,19 @@ class SiteController
 
         return [
             '$view' => [
-                'title' => __($gallery->title),
-                'name' => 'gallery/gallery.php',
-                'og:type' => 'article',
+                'title'                  => __($gallery->title),
+                'name'                   => 'gallery/gallery.php',
+                'og:type'                => 'article',
                 'article:published_time' => $gallery->date->format(\DateTime::ATOM),
-                'article:modified_time' => $gallery->modified->format(\DateTime::ATOM),
-                'article:author' => $gallery->user->name,
-                'og:title' => $gallery->get('meta.og:title') ?: $gallery->title,
-                'og:description' => $description,
-                'og:image' =>  App::url()->getStatic('/storage/shw-gallery/thumbnails/tn_'.$image->filename, [], 0)
+                'article:modified_time'  => $gallery->modified->format(\DateTime::ATOM),
+                'article:author'         => $gallery->user->name,
+                'og:title'               => $gallery->get('meta.og:title') ?: $gallery->title,
+                'og:description'         => $description,
+                'og:image'               => App::url()->getStatic('/storage/shw-gallery/thumbnails/tn_'.$image->filename, [], 0),
             ],
             'shwGallery' => $this->gallery,
-            'gallery' => $gallery,
-            'images' => $images
+            'gallery'    => $gallery,
+            'images'     => $images,
         ];
     }
 }
