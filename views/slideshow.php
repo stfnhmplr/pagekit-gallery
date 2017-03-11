@@ -10,7 +10,7 @@
         </li>
         <?php endforeach ?>
     </ul>
-    <?php if(count($images) > 1): ?>
+    <?php if (count($images) > 1): ?>
     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
     <?php endif ?>

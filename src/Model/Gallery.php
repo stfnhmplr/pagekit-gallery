@@ -68,19 +68,19 @@ class Gallery implements \JsonSerializable
 
     /** @var array */
     protected static $properties = [
-        'author' => 'getAuthor',
-        'published' => 'isPublished',
-        'accessible' => 'isAccessible'
+        'author'     => 'getAuthor',
+        'published'  => 'isPublished',
+        'accessible' => 'isAccessible',
     ];
 
     public static function getStatuses()
     {
         return [
-            self::STATUS_PUBLISHED => __('Published'),
-            self::STATUS_UNPUBLISHED => __('Unpublished'),
-            self::STATUS_DRAFT => __('Draft'),
+            self::STATUS_PUBLISHED      => __('Published'),
+            self::STATUS_UNPUBLISHED    => __('Unpublished'),
+            self::STATUS_DRAFT          => __('Draft'),
             self::STATUS_PENDING_REVIEW => __('Pending Review'),
-            self::STATUS_MINIGALLERY => __('Minigallery only')
+            self::STATUS_MINIGALLERY    => __('Minigallery only'),
         ];
     }
 

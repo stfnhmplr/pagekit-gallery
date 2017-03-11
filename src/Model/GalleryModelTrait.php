@@ -2,7 +2,6 @@
 
 namespace Shw\Gallery\Model;
 
-use Pagekit\Application as App;
 use Pagekit\Database\ORM\ModelTrait;
 
 trait GalleryModelTrait
@@ -10,7 +9,7 @@ trait GalleryModelTrait
     use ModelTrait;
 
     /**
-     * Get all users who have written an article
+     * Get all users who have written an article.
      */
     public static function getAuthors()
     {
@@ -24,7 +23,7 @@ trait GalleryModelTrait
     {
         $gallery->modified = new \DateTime();
 
-        $i  = 2;
+        $i = 2;
         $id = $gallery->id;
 
         while (self::where('slug = ?', [$gallery->slug])->where(function ($query) use ($id) {

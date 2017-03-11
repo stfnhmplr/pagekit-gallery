@@ -2,7 +2,6 @@
 
 namespace Shw\Gallery\Model;
 
-use Pagekit\Application as App;
 use Pagekit\Database\ORM\ModelTrait;
 
 trait ImageModelTrait

@@ -4,30 +4,30 @@ namespace Shw\Gallery\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\Markdown\Markdown;
-use Shw\Gallery\Model\Gallery;
 use Pagekit\User\Model\Role;
+use Shw\Gallery\Model\Gallery;
 
 /**
  * @Access(admin=true)
  */
 class GalleryController
 {
-    public function galleryAction($filter = null, $page = null) {
-
-      return [
+    public function galleryAction($filter = null, $page = null)
+    {
+        return [
           '$view' => [
               'title' => __('Galleries'),
-              'name'  => 'gallery:views/admin/gallery-index.php'
+              'name'  => 'gallery:views/admin/gallery-index.php',
           ],
           '$data' => [
-              'statuses' => Gallery::getStatuses(),
-              'authors'  => Gallery::getAuthors(),
+              'statuses'   => Gallery::getStatuses(),
+              'authors'    => Gallery::getAuthors(),
               'canEditAll' => App::user()->hasAccess('gallery: manage all galleries'),
-              'config'   => [
+              'config'     => [
                   'filter' => (object) $filter,
-                  'page'   => $page
-              ]
-          ]
+                  'page'   => $page,
+              ],
+          ],
 
       ];
     }
@@ -40,22 +40,20 @@ class GalleryController
     public function editAction($id = 0)
     {
         try {
-
             if (!$gallery = Gallery::where(compact('id'))->related('user', 'images')->first()) {
-
                 if ($id) {
                     App::abort(404, __('Invalid gallery id'));
                 }
 
                 $gallery = Gallery::create([
                     'user_id' => App::user()->id,
-                    'date' => new \DateTime(),
-                    'status' => Gallery::STATUS_DRAFT
+                    'date'    => new \DateTime(),
+                    'status'  => Gallery::STATUS_DRAFT,
                 ]);
             }
 
             $user = App::user();
-            if(!$user->hasAccess('gallery: manage all galleries') && $gallery->user_id !== $user->id) {
+            if (!$user->hasAccess('gallery: manage all galleries') && $gallery->user_id !== $user->id) {
                 App::abort(403, __('Insufficient User Rights.'));
             }
 
@@ -75,26 +73,23 @@ class GalleryController
             return [
                 '$view' => [
                     'title' => $id ? __('Edit Gallery') : __('Add Gallery'),
-                    'name'  => 'gallery/admin/gallery-edit.php'
+                    'name'  => 'gallery/admin/gallery-edit.php',
                 ],
                 '$data' => [
                     'gallery'     => $gallery,
-                    'statuses' => Gallery::getStatuses(),
-                    'roles'    => array_values(Role::findAll()),
-                    'canEditAll' => $user->hasAccess('gallery: manage all galleries'),
-                    'authors'  => $authors
+                    'statuses'    => Gallery::getStatuses(),
+                    'roles'       => array_values(Role::findAll()),
+                    'canEditAll'  => $user->hasAccess('gallery: manage all galleries'),
+                    'authors'     => $authors,
                 ],
-                'gallery' => $gallery
+                'gallery' => $gallery,
             ];
-
         } catch (\Exception $e) {
-
             App::message()->error($e->getMessage());
 
             return App::redirect('@gallery');
         }
     }
-
 
     /**
      * @Access("system: access settings")
@@ -104,11 +99,11 @@ class GalleryController
         return [
             '$view' => [
                 'title' => __('Gallery Settings'),
-                'name'  => 'gallery:views/admin/settings.php'
+                'name'  => 'gallery:views/admin/settings.php',
             ],
             '$data' => [
-                'config' => App::module('gallery')->config()
-            ]
+                'config' => App::module('gallery')->config(),
+            ],
         ];
     }
 
@@ -121,12 +116,13 @@ class GalleryController
         $content = $markdown->parse(
             file_get_contents(App::path().App::url()->getStatic('packages/shw/gallery/CHANGELOG.md'))
         );
+
         return [
             '$view' => [
                 'title' => __('Changelog'),
-                'name'  => 'gallery:views/admin/changelog.php'
+                'name'  => 'gallery:views/admin/changelog.php',
             ],
-            'content' => $content
+            'content' => $content,
         ];
     }
 }

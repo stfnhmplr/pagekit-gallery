@@ -2,7 +2,7 @@
 
 <h1><?= $shwGallery->config('gallery.title') ?></h1>
 
-<?php if(!$galleries): ?>
+<?php if (!$galleries): ?>
     <h3 class="uk-h1 uk-text-muted uk-text-center"><?php echo __('No Galleries found') ?></h3>
 <?php else: ?>
     <div class="uk-grid uk-grid-width-1-4" data-uk-grid-margin>
