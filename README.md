@@ -9,10 +9,8 @@ gallery-extension for https://pagekit.com/
 - uses uikit-lightbox at the frontend
 - include slideshows to your blog post or site content with shortcodes -> simple use the button at the editor
 
-##requirements
+## requirements
 - PHP GD extension
-
-**this extension has beta status**
 
 thanks to pierzo for polish translation
 thanks to kroozo for hungarian translation
