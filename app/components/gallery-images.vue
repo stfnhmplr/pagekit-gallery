@@ -181,6 +181,9 @@
                     this.$notify(this.$trans((this.files.length > 1) ? 'Images uploaded' : 'Image uploaded'));
                     this.reset();
                     this.$set('gallery.images', res.data.images)
+                }).catch(function (err) {
+                    this.$notify(this.$trans('Error while uploading images'), 'danger');
+                    console.log(err);
                 });
             },
             reset() {
