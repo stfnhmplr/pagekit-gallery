@@ -34,6 +34,9 @@
                     <img class="uk-thumbnail pointer" :src="$url('storage/shw-gallery/thumbnails/tn_' + image.filename)" @click="editImage(image)"/>
                 </div>
             </div>
+            <div v-if="gallery.images" class="uk-text-center uk-margin-large-top">
+                <button class="uk-button" @click.prevent="rebuildThumbnails">{{ 'Rebuild thumbnails' | trans }}</button>
+            </div>
         </div>
         <div class="uk-modal" v-el:modal>
             <div class="uk-modal-dialog" v-if="img">
@@ -97,7 +100,7 @@
 <script>
 
     module.exports = {
-
+        props: ['gallery'],
         section: {
             label: 'Images',
             priority: 100
@@ -118,8 +121,6 @@
                 this.$set('maxSize', res.data);
             });
         },
-
-        props: ['gallery'],
 
         methods: {
             onFileChange(e) {
@@ -152,6 +153,12 @@
                 this.$resource('api/gallery/image{/id}').save({ id: img.id }, { image: img }).then(function () {
                     this.modal.hide();
                     this.$notify(this.$trans('Image saved'));
+                });
+            },
+
+            rebuildThumbnails () {
+                this.$resource('api/gallery/rebuild').update({ id: this.gallery.id }).then(function (res) {
+                    this.$notify(this.$trans('Thumbnails rebuilded. Please reload the page to see changes!'));
                 });
             },
 

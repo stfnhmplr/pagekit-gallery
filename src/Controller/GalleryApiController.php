@@ -220,6 +220,38 @@ class GalleryApiController
     }
 
     /**
+     * @Route("/rebuild", methods="PUT")
+     * @Request({"id": "int"}, csrf=true)
+     */
+    public function rebuildAction($id)
+    {
+        if (!$id || !$gallery = Gallery::where(compact('id'))->related('images')->first()) {
+            App::abort(404, __('Gallery not found.'));
+        }
+        $path = 'storage/shw-gallery';
+
+        foreach ($gallery->images as $image) {
+            $this->createThumbnail($path, $image->filename);
+        }
+
+        return ['message' => 'success'];
+    }
+
+    /**
+     * @param $path String
+     * @param $filename String
+     */
+    private function createThumbnail($path, $filename)
+    {
+        $img = GImage::open($path.'/'.$filename);
+        $img->zoomCrop(
+            App::module('gallery')->config('images.thumbnail_width'),
+            App::module('gallery')->config('images.thumbnail_height'))
+            ->save($path.'/thumbnails/tn_'.$filename,
+                (int) App::module('gallery')->config('images.image_quality'));
+    }
+
+    /**
      * @Route("/dashboard", methods="GET")
      * @Request({"filter": "array"})
      */

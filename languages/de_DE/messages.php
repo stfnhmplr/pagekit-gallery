@@ -88,4 +88,7 @@ return [
     'Show Link?'                                                         => 'Link anzeigen?',
     'Limit'                                                              => 'Limit',
     'Please add and publish a gallery first!'                            => 'Bitte erstelle und veröffentliche mindestens eine Galerie!',
+    'Error while uploading images'                                       => 'Fehler beim hochladen der Bilder',
+    'Thumbnails rebuilded. Please reload the page to see changes!'       => 'Thumbnails neu erstellt. Bitte Seite aktualisieren um die Änderungen zu sehen!',
+    'Rebuild thumbnails'                                                 => 'Thumbnails neu erstellen'
 ];
