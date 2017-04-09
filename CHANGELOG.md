@@ -1,4 +1,8 @@
 # Changelog
+## 0.2.6 (April 9, 2017)
+- fixed upload progress bar
+- added error message for failed upload
+- added function to rebuild thumbnails
 
 ## 0.2.5 (January 28, 2017)
 - fixed image quality change

@@ -1,5 +1,5 @@
 # Gallery Extension for Pagekit CMS
-[![StyleCI](https://styleci.io/repos/65122978/shield?branch=master)](https://styleci.io/repos/65122978)
+[![StyleCI](https://styleci.io/repos/65122978/shield?branch=master)](https://styleci.io/repos/65122978) [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/himpler)
 
 gallery-extension for https://pagekit.com/ 
 
