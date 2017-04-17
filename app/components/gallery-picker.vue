@@ -77,5 +77,5 @@
                 this.$emit('select', this.gallery);
             }
         }
-    };
+    }
 </script>
