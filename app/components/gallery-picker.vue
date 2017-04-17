@@ -8,7 +8,7 @@
                     <h2>{{ 'Add Gallery' | trans }}</h2>
                 </div>
 
-                <div v-if="!galleries.length" class="uk-form-row">
+                <div v-if="!galleries || !galleries.length" class="uk-form-row">
                     <p>{{ 'Please add and publish a gallery first!' | trans }}</p>
                 </div>
                 <div v-else>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="uk-modal-footer uk-text-right">
                     <button class="uk-button uk-button-link uk-modal-close" type="button">{{ 'Cancel' | trans }}</button>
-                    <button v-if="galleries.length" class="uk-button uk-button-link" type="submit">{{ 'Update' | trans }}</button>
+                    <button v-if="galleries && galleries.length" class="uk-button uk-button-link" type="submit">{{ 'Update' | trans }}</button>
                 </div>
 
             </form>
