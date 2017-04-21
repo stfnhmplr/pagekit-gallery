@@ -15,9 +15,8 @@ module.exports = {
         this.$parent.editor.plugins.push('-gallery');
 
         tinyMCE.PluginManager.add('gallery', function (editor) {
-            var showDialog = function () {
-                //var editor = this.$parent.editor, cursor = editor.editor.getCursor();
 
+            var showDialog = function () {
                 new vm.$parent.$options.utils['gallery-picker']({
                     parent: vm,
                     data: {
@@ -28,17 +27,16 @@ module.exports = {
                     .$appendTo('body')
                     .$on('select', function (gallery) {
                         var replacement = '[gallery id="' + gallery.id + '"';
-                        (gallery.limit > 1) ? replacement += ' limit="' + gallery.limit +'"' : '';
+                        (gallery.limit > 1) ? replacement += ' limit="' + gallery.limit + '"' : '';
                         replacement += ' showLink="' + gallery.showLink + '"/]';
-
                         editor.selection.setContent(replacement);
-
                         editor.fire('change');
                     });
             };
 
             editor.addButton('gallery', {
                 tooltip: vm.$trans('Insert gallery'),
+                icon: 'image',
                 image: vm.$url('packages/shw/gallery/assets/img/editor-icon.svg'),
                 onclick: showDialog
             });
@@ -49,7 +47,6 @@ module.exports = {
                 context: 'insert',
                 onclick: showDialog
             });
-
         });
     }
 };
