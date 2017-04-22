@@ -31,11 +31,8 @@
             <h3 class="uk-h1 uk-text-muted uk-text-center" v-if="!gallery.images">{{ 'No images found' | trans }}</h3>
             <div class="uk-grid uk-grid-width-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-5" v-else data-uk-grid-margin>
                 <div class="uk-text-center" v-for="image in gallery.images">
-                    <img class="uk-thumbnail pointer" :src="$url('storage/shw-gallery/thumbnails/tn_' + image.filename)" @click="editImage(image)"/>
+                    <img class="uk-thumbnail pointer" :src="$url(image.thumbnail)" @click="editImage(image)"/>
                 </div>
-            </div>
-            <div v-if="gallery.images" class="uk-text-center uk-margin-large-top">
-                <button class="uk-button" @click.prevent="rebuildThumbnails">{{ 'Rebuild thumbnails' | trans }}</button>
             </div>
         </div>
         <div class="uk-modal" v-el:modal>
@@ -49,7 +46,7 @@
                 </div>
 
                 <div class="uk-form-row">
-                    <img class="uk-thumbnail" :src="$url('storage/shw-gallery/' + img.filename)" />
+                    <img class="uk-thumbnail" :src="$url(img.image)" />
                 </div>
 
                 <div class="uk-form-row">
@@ -153,12 +150,6 @@
                 this.$resource('api/gallery/image{/id}').save({ id: img.id }, { image: img }).then(function () {
                     this.modal.hide();
                     this.$notify(this.$trans('Image saved'));
-                });
-            },
-
-            rebuildThumbnails () {
-                this.$resource('api/gallery/rebuild').update({ id: this.gallery.id }).then(function (res) {
-                    this.$notify(this.$trans('Thumbnails rebuilded. Please reload the page to see changes!'));
                 });
             },
 

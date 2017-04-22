@@ -6,7 +6,7 @@
     <ul class="uk-slideshow">
         <?php foreach ($images as $image): ?>
         <li>
-            <img src="<?= $view->url()->getStatic('storage/shw-gallery/'.$image->filename) ?>" alt="<?=$image->title?>" />
+            <img src="<?= $view->url()->getStatic($image->getImage()) ?>" alt="<?=$image->title?>" />
         </li>
         <?php endforeach ?>
     </ul>

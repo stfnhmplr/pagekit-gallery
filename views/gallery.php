@@ -16,7 +16,7 @@
     <?php foreach ($images as $image): ?>
     <li class="uk-text-center">
         <a href="<?= $view->url()->getStatic('storage/shw-gallery/'.$image->filename) ?>" data-uk-lightbox="{group:'gallery'}" title="<?= $image->title ?>">
-            <img src="<?= $view->url()->getStatic('storage/shw-gallery/thumbnails/tn_'.$image->filename) ?>" alt="<?=$image->title?>" />
+            <img src="<?= $view->url()->getStatic($image->getThumbnail()) ?>" alt="<?=$image->title?>" />
         </a>
     </li>
     <?php endforeach ?>

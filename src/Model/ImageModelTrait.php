@@ -3,6 +3,8 @@
 namespace Shw\Gallery\Model;
 
 use Pagekit\Database\ORM\ModelTrait;
+use Pagekit\Application as App;
+use Gregwar\Image\Image as GImage;
 
 trait ImageModelTrait
 {
@@ -15,4 +17,38 @@ trait ImageModelTrait
     {
         $image->modified = new \DateTime();
     }
+
+    /**
+     * @param null $width
+     * @param null $height
+     * @return \Gregwar\Image\Image
+     */
+    public function getThumbnail ($width = null, $height = null)
+    {
+        if (!$width) $width =  App::module('gallery')->config('images.thumbnail_width');
+        if (!$height) $height = App::module('gallery')->config('images.thumbnail_height');
+
+        return GImage::open('storage/shw-gallery/'.$this->filename)
+            ->setCacheDir('storage/shw-gallery/cache')
+            ->zoomCrop($width, $height)
+            ->guess((int) App::module('gallery')->config('images.image_quality'));
+    }
+
+    /**
+     * @param null $width
+     * @param null $height
+     * @return \Gregwar\Image\Image
+     */
+    public function getImage ($width = null, $height = null)
+    {
+        if (!$width) $width =  App::module('gallery')->config('images.image_width');
+        if (!$height) $height = App::module('gallery')->config('images.image_height');
+
+        return GImage::open('storage/shw-gallery/'.$this->filename)
+            ->setCacheDir('storage/shw-gallery/cache')
+            ->cropResize($width, $height)
+            ->guess((int) App::module('gallery')->config('images.image_quality'));
+    }
+
+
 }

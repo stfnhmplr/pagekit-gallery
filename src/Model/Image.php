@@ -7,7 +7,7 @@ use Pagekit\System\Model\DataModelTrait;
 /**
  * @Entity(tableClass="@images")
  */
-class Image
+class Image implements \JsonSerializable
 {
     use DataModelTrait, ImageModelTrait;
 
@@ -37,4 +37,18 @@ class Image
 
     /** @BelongsTo(targetEntity="Shw\Gallery\Model\Gallery", keyFrom="gallery_id") */
     public $gallery;
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        $data = [
+            'thumbnail' => $this->getThumbnail(),
+            'image' => $this->getImage()
+        ];
+
+        return $this->toArray($data);
+    }
 }
