@@ -31,7 +31,7 @@ class GalleryApiController
         }
 
         if (is_numeric($status)) {
-            $query->where(['status' => (int) $status]);
+            $query->where(['status' => (int)$status]);
         }
 
         //fetch only published and minigallery-only galleries from db
@@ -47,7 +47,7 @@ class GalleryApiController
 
         if ($author) {
             $query->where(function ($query) use ($author) {
-                $query->orWhere(['user_id' => (int) $author]);
+                $query->orWhere(['user_id' => (int)$author]);
             });
         }
 
@@ -55,7 +55,7 @@ class GalleryApiController
             $order = [1 => 'date', 2 => 'desc'];
         }
 
-        $limit = (int) App::module('gallery')->config('gallery.galleries_per_page');
+        $limit = (int)App::module('gallery')->config('gallery.galleries_per_page');
         $count = $query->count();
         $pages = ceil($count / $limit);
         $page = max(0, min($pages - 1, $page));
@@ -117,8 +117,8 @@ class GalleryApiController
             foreach ($images as $image) {
 
                 try {
-                    unlink('storage/shw-gallery/'.$image->filename);
-                    unlink('storage/shw-gallery/thumbnails/tn_'.$image->filename);
+                    unlink('storage/shw-gallery/' . $image->filename);
+                    unlink('storage/shw-gallery/thumbnails/tn_' . $image->filename);
                 } catch (ContextErrorException $e) {
                     //image not found anymore. do nothing.
                 }
@@ -137,7 +137,7 @@ class GalleryApiController
     public function copyAction($ids = [])
     {
         foreach ($ids as $id) {
-            if ($gallery = Gallery::find((int) $id)) {
+            if ($gallery = Gallery::find((int)$id)) {
                 if (!App::user()->hasAccess('gallery: manage all galleries') && !App::user()->hasAccess('gallery: manage own galleries') && $gallery->user_id !== App::user()->id) {
                     continue;
                 }
@@ -145,7 +145,7 @@ class GalleryApiController
                 $gallery = clone $gallery;
                 $gallery->id = null;
                 $gallery->status = Gallery::STATUS_DRAFT;
-                $gallery->title = $gallery->title.' - '.__('Copy');
+                $gallery->title = $gallery->title . ' - ' . __('Copy');
                 $gallery->comment_count = 0;
                 $gallery->date = new \DateTime();
                 $gallery->save();
@@ -193,7 +193,7 @@ class GalleryApiController
         $path = 'storage/shw-gallery';
         if (!file_exists($path)) {
             mkdir($path, 0755);
-            mkdir($path.'/cache', 0755);
+            mkdir($path . '/cache', 0755);
         }
         $files = self::rearrange($_FILES['images']);
         foreach ($files as $file) {
@@ -202,18 +202,18 @@ class GalleryApiController
                 App::abort(400, 'Only JPG / PNG is supported');
             }
             $file['name'] = str_replace($match[0], '', $file['name']);
-            $new_filename = strtolower(time().'_'.App::filter($file['name'], 'slugify').$match[0]);
+            $new_filename = strtolower(time() . '_' . App::filter($file['name'], 'slugify') . $match[0]);
             $new_filename = str_replace(' ', '_', $new_filename);
             $img = GImage::open($file['tmp_name']);
             $img->cropResize(
                 App::module('gallery')->config('images.image_width'),
                 App::module('gallery')->config('images.image_height'))
-                ->save($path.'/'.$new_filename, (int) App::module('gallery')->config('images.image_quality'));
+                ->save($path . '/' . $new_filename, (int)App::module('gallery')->config('images.image_quality'));
             $img->zoomCrop(
                 App::module('gallery')->config('images.thumbnail_width'),
                 App::module('gallery')->config('images.thumbnail_height'))
-                ->save($path.'/thumbnails/tn_'.$new_filename,
-                    (int) App::module('gallery')->config('images.image_quality'));
+                ->save($path . '/thumbnails/tn_' . $new_filename,
+                    (int)App::module('gallery')->config('images.image_quality'));
             $image = Image::create();
             $image->gallery_id = $gallery->id;
             $image->user_id = App::user()->id;
@@ -245,7 +245,7 @@ class GalleryApiController
     {
         $query = Gallery::query();
         if (array_key_exists('status', $filter)) {
-            $query->where(['status' => (int) $filter['status']]);
+            $query->where(['status' => (int)$filter['status']]);
         }
         $galleries = $query->count();
         $ids = array_column($query->select('id')->execute()->fetchAll(), 'id');
