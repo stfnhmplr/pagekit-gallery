@@ -38,7 +38,6 @@ class Image implements \JsonSerializable
     /** @BelongsTo(targetEntity="Shw\Gallery\Model\Gallery", keyFrom="gallery_id") */
     public $gallery;
 
-
     /**
      * {@inheritdoc}
      */
@@ -46,7 +45,7 @@ class Image implements \JsonSerializable
     {
         $data = [
             'thumbnail' => $this->getThumbnail(),
-            'image' => $this->getImage()
+            'image'     => $this->getImage(),
         ];
 
         return $this->toArray($data);
