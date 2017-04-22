@@ -5,7 +5,6 @@ namespace Shw\Gallery\Controller;
 use Pagekit\Application as App;
 use Shw\Gallery\Model\Gallery;
 use Shw\Gallery\Model\Image;
-use Gregwar\Image as GImage;
 
 class SiteController
 {
