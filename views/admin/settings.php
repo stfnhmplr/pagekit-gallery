@@ -154,6 +154,9 @@
                             </p>
                         </div>
                     </div>
+                    <div class="uk-form-row">
+                        <button class="uk-button" @click.prevent="clearCache">{{ 'clear cache' | trans }}</button>
+                    </div>
                 </li>
             </ul>
 

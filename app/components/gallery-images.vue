@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="uk-form-row">
-                    <img class="uk-thumbnail" :src="$url(img.image)" />
+                    <img v-el:image class="uk-thumbnail" :src="$url(img.image)" />
                 </div>
 
                 <div class="uk-form-row">
@@ -58,8 +58,8 @@
                 </div>
 
                 <div class="uk-modal-footer uk-text-right">
-                    <button class="uk-button uk-button-link uk-modal-close" type="button">{{ 'Cancel' | trans }}</button>
-                    <button class="uk-button uk-button-link" @click.prevent="saveImage(img)">{{ 'Update' | trans }}</button>
+                    <button class="uk-button uk-button-link uk-modal-close" @click.prevent="cancelEdit" type="button">{{ 'Cancel' | trans }}</button>
+                    <button class="uk-button uk-button-link" @click.prevent="saveImage">{{ 'Update' | trans }}</button>
                 </div>
 
             </div>
@@ -110,7 +110,8 @@
                 form: {},
                 images: [],
                 progress: 0,
-                maxSize: ''
+                maxSize: '',
+                img: {}
             }
         },
 
@@ -139,8 +140,18 @@
                 });
             },
 
-            rotateImage: function (img) {
-                //TODO: Rotate Function
+            rotateImage: function () {
+                if (this.img.rotate && this.img.rotate < 271) {
+                    this.$set('img.rotate', this.img.rotate + 90);
+                } else {
+                    this.$set('img.rotate', 90);
+                }
+
+                this.$els.image.setAttribute('style',
+                    '-moz-transform: rotate('+ this.img.rotate +'deg);' +
+                    '-o-transform: rotate('+ this.img.rotate +'deg);' +
+                    '-webkit-transform: rotate('+ this.img.rotate +'deg);' +
+                    'transform: rotate('+ this.img.rotate +'deg);');
             },
 
             editImage: function (img) {
@@ -151,14 +162,18 @@
                 this.modal.show();
             },
 
-            saveImage: function(img) {
-                this.$resource('api/gallery/image{/id}').save({ id: img.id }, { image: img }).then(function () {
+            saveImage: function() {
+                this.$resource('api/gallery/image{/id}').save({ id: this.img.id }, { image: this.img }).then(function () {
+                    this.$els.image.setAttribute('style', '');
+                    this.$set('img', '');
                     this.modal.hide();
                     this.$notify(this.$trans('Image saved'));
                 });
             },
 
             cancelEdit: function () {
+                this.$els.image.setAttribute('style', '');
+                this.$set('img', '');
                 this.modal.hide();
             },
 
@@ -168,9 +183,6 @@
                     this.form.append('images[' + key + ']', this.files[key]);
                 }
 
-                //only supported by chrome and firefox
-                //this.form.delete('images[item]');
-                //this.form.delete('images[length]');
                 this.form.append('id', this.gallery.id);
                 this.$http.post('api/gallery/upload', this.form, {
                     upload: {

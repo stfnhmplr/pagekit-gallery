@@ -15,6 +15,14 @@ module.exports = {
                         this.$notify(data, 'danger');
                     }
                 );
+        },
+        clearCache: function () {
+            this.$http.put('/api/gallery/clearcache').then(function () {
+                    this.$notify('Cache cleared.');
+                }, function (err) {
+                    this.$notify(err, 'danger');
+                }
+            );
         }
 
     }

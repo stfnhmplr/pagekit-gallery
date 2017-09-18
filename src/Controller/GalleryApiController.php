@@ -227,10 +227,9 @@ class GalleryApiController
     }
 
     /**
-     * @Route("/clearCache", methods="PUT")
-     * @Request({"id": "int"}, csrf=true)
+     * @Route("/clearcache", methods="PUT")
      */
-    public function clearCacheAction($id)
+    public function clearCacheAction()
     {
         GarbageCollect::dropOldFiles('storage/shw-gallery/cache', 0);
 

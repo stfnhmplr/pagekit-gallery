@@ -4,6 +4,7 @@ namespace Shw\Gallery\Controller;
 
 use Pagekit\Application as App;
 use Shw\Gallery\Model\Image;
+use Gregwar\Image\Image as GImage;
 
 /**
  * @Access("gallery: manage own galleries || gallery: manage all galleries")
@@ -32,8 +33,15 @@ class ImageApiController
         }
 
         unset($data['modified']);
-
         $image->save($data);
+
+        if ($data['rotate']) {
+            //$path = 'storage/shw-gallery/' + $data['filename'];
+
+            $img = GImage::open($data['image'])
+                ->rotate($data['rotate'])
+                ->save($data['image'], (int) App::module('gallery')->config('images.image_quality'));
+        }
 
         return ['message' => 'success'];
     }
