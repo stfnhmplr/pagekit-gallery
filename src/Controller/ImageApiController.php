@@ -36,11 +36,11 @@ class ImageApiController
         $image->save($data);
 
         if ($data['rotate']) {
-            //$path = 'storage/shw-gallery/' + $data['filename'];
+            $path = 'storage/shw-gallery/'.$data['filename'];
 
-            $img = GImage::open($data['image'])
-                ->rotate($data['rotate'])
-                ->save($data['image'], (int) App::module('gallery')->config('images.image_quality'));
+            $img = GImage::open($path)
+                ->rotate(-$data['rotate'])
+                ->save($path, (int) App::module('gallery')->config('images.image_quality'));
         }
 
         return ['message' => 'success'];
