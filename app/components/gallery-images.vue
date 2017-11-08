@@ -35,6 +35,7 @@
                 </div>
             </div>
         </div>
+        <!-- image edit modal -->
         <div class="uk-modal" v-el:modal>
             <div class="uk-modal-dialog" v-if="img">
 
@@ -141,17 +142,24 @@
             },
 
             rotateImage: function () {
+
                 if (this.img.rotate && this.img.rotate < 271) {
                     this.$set('img.rotate', this.img.rotate + 90);
                 } else {
                     this.$set('img.rotate', 90);
                 }
 
+                let ratio = this.$els.image.width/this.$els.image.height;
+                ratio = ratio > 1 ? 1/ratio : ratio;
+                if (this.img.rotate === 180 || this.img.rotate === 360) {
+                    ratio = 1;
+                }
+
                 this.$els.image.setAttribute('style',
-                    '-moz-transform: rotate('+ this.img.rotate +'deg);' +
-                    '-o-transform: rotate('+ this.img.rotate +'deg);' +
-                    '-webkit-transform: rotate('+ this.img.rotate +'deg);' +
-                    'transform: rotate('+ this.img.rotate +'deg);');
+                    '-moz-transform: rotate('+ this.img.rotate +'deg) scale('+ ratio +');' +
+                    '-o-transform: rotate('+ this.img.rotate +'deg) scale('+ ratio +');' +
+                    '-webkit-transform: rotate('+ this.img.rotate +'deg) scale('+ ratio +');' +
+                    'transform: rotate('+ this.img.rotate +'deg) scale('+ ratio +');');
             },
 
             editImage: function (img) {
