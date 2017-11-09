@@ -3,6 +3,7 @@ module.exports = [
     {
         entry: {
             "slideshow": "./app/views/slideshow", //fake
+            "gallery": "./app/views/gallery",
             "gallery-edit": "./app/views/admin/gallery-edit",
             "gallery-index": "./app/views/admin/gallery-index",
             "editor-plugin": "./app/views/admin/editor-plugin",
