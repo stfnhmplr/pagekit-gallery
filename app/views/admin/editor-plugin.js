@@ -74,7 +74,7 @@ module.exports = {
             preview += (options.limit) ? ':limit="' + options.limit + '" ' : '';
             preview += ':show-link="' + options.showLink + '"></gallery-preview>';
 
-            return preview
+            return preview;
         }
 
     },

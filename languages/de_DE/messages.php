@@ -92,5 +92,6 @@ return [
     'Thumbnails rebuilded. Please reload the page to see changes!'       => 'Thumbnails neu erstellt. Bitte Seite aktualisieren um die Änderungen zu sehen!',
     'Rebuild thumbnails'                                                 => 'Thumbnails neu erstellen',
     'Rotate image'                                                       => 'Bild drehen',
-    'Cache cleared.'                                                     => 'Cache gelöscht.'
+    'Cache cleared.'                                                     => 'Cache gelöscht.',
+    'Please choose a gallery first'                                      => 'Bitte wähle zuerst eine Galerie aus'
 ];
