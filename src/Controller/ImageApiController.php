@@ -2,9 +2,9 @@
 
 namespace Shw\Gallery\Controller;
 
+use Gregwar\Image\Image as GImage;
 use Pagekit\Application as App;
 use Shw\Gallery\Model\Image;
-use Gregwar\Image\Image as GImage;
 
 /**
  * @Access("gallery: manage own galleries || gallery: manage all galleries")
