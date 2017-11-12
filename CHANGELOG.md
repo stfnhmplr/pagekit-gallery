@@ -1,4 +1,10 @@
 # Changelog
+## 0.3.0
+- added image caching
+- added function to rotate images
+- added Escape Key listener to close lightbox
+- bugfixes
+
 ## 0.2.6 (April 9, 2017)
 - fixed upload progress bar
 - added error message for failed upload

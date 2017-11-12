@@ -125,12 +125,15 @@ return [
             );
         },
 
-        'view.scripts' => function ($event, $scripts) {
+        'view.scripts' => function ($event, $scripts) use ($app) {
             $scripts->register('gallery-link', 'gallery:app/bundle/link-gallery.js', '~panel-link');
             $scripts->register('gallery-dashboard', 'gallery:app/bundle/gallery-dashboard.js', '~dashboard');
             $scripts->register('gallery-meta', 'gallery:app/bundle/gallery-meta.js', '~gallery-edit');
             $scripts->register('gallery-images', 'gallery:app/bundle/gallery-images.js', '~gallery-edit');
-            $scripts->register('editor-plugin', 'gallery:app/bundle/editor-plugin.js', ['~editor']);
+            $scripts->register('editor-gallery', 'gallery:app/bundle/editor-plugin.js', '~editor');
+            if ($app->module('tinymce')) {
+                $scripts->register('tinymce-gallery', 'gallery:app/bundle/tinymce-plugin.js', '~editor-gallery');
+            }
         },
 
     ],

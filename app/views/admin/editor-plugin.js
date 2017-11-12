@@ -3,6 +3,7 @@ module.exports = {
     plugin: true,
 
     created: function () {
+
         var vm = this, editor = this.$parent.editor;
 
         if (!editor || !editor.htmleditor) {
@@ -13,8 +14,8 @@ module.exports = {
         this.resource = this.$resource('api/gallery{/id}');
 
         editor.addButton('gallery', {
-            title: 'Gallery',
-            label: '<img src="' + this.$url('packages/shw/gallery/assets/img/editor-icon.svg') + '" width="12px" height="12px"></img>'
+            title: this.$trans('Gallery'),
+            label: '<img src="' + this.$url('packages/shw/gallery/assets/img/editor-icon.svg') + '" width="12px" height="12px" />'
         });
 
         editor.options.toolbar.push('gallery');
@@ -41,13 +42,12 @@ module.exports = {
         editor.debouncedRedraw();
     },
 
-
     methods: {
 
         openModal: function () {
             var editor = this.$parent.editor, cursor = editor.editor.getCursor();
 
-            new this.$options.utils['editor-picker']({
+            new this.$options.utils['gallery-picker']({
                 parent: this,
                 data: {
                     gallery: '',
@@ -74,19 +74,18 @@ module.exports = {
             preview += (options.limit) ? ':limit="' + options.limit + '" ' : '';
             preview += ':show-link="' + options.showLink + '"></gallery-preview>';
 
-            return preview
+            return preview;
         }
 
     },
 
     components: {
-        'gallery-preview': require('../../components/editor-preview.vue')
+        'gallery-preview': require('../../components/gallery-preview.vue')
     },
 
     utils: {
-        'editor-picker': Vue.extend(require('../../components/editor-picker.vue'))
+        'gallery-picker': Vue.extend(require('../../components/gallery-picker.vue'))
     }
-
 };
 
-window.Editor.components['editor-plugin'] = module.exports;
+window.Editor.components['plugin-gallery'] = module.exports;

@@ -2,10 +2,12 @@
 
 namespace Shw\Gallery\Controller;
 
+use Gregwar\Image\GarbageCollect;
 use Gregwar\Image\Image as GImage;
 use Pagekit\Application as App;
 use Shw\Gallery\Model\Gallery;
 use Shw\Gallery\Model\Image;
+use Symfony\Component\Debug\Exception\ContextErrorException;
 
 /**
  * @Access("gallery: manage own galleries || gallery: manage all galleries")
@@ -113,8 +115,13 @@ class GalleryApiController
             //delete pictures
             $images = Image::query()->where(['gallery_id' => $gallery->id])->get();
             foreach ($images as $image) {
-                unlink('storage/shw-gallery/'.$image->filename);
-                unlink('storage/shw-gallery/thumbnails/tn_'.$image->filename);
+                try {
+                    unlink('storage/shw-gallery/'.$image->filename);
+                    unlink('storage/shw-gallery/thumbnails/tn_'.$image->filename);
+                } catch (ContextErrorException $e) {
+                    //image not found anymore. do nothing.
+                }
+
                 $image->delete();
             }
             $gallery->delete();
@@ -186,7 +193,7 @@ class GalleryApiController
         $path = 'storage/shw-gallery';
         if (!file_exists($path)) {
             mkdir($path, 0755);
-            mkdir($path.'/thumbnails', 0755);
+            mkdir($path.'/cache', 0755);
         }
         $files = self::rearrange($_FILES['images']);
         foreach ($files as $file) {
@@ -220,35 +227,13 @@ class GalleryApiController
     }
 
     /**
-     * @Route("/rebuild", methods="PUT")
-     * @Request({"id": "int"}, csrf=true)
+     * @Route("/clearcache", methods="PUT")
      */
-    public function rebuildAction($id)
+    public function clearCacheAction()
     {
-        if (!$id || !$gallery = Gallery::where(compact('id'))->related('images')->first()) {
-            App::abort(404, __('Gallery not found.'));
-        }
-        $path = 'storage/shw-gallery';
-
-        foreach ($gallery->images as $image) {
-            $this->createThumbnail($path, $image->filename);
-        }
+        GarbageCollect::dropOldFiles('storage/shw-gallery/cache', 0);
 
         return ['message' => 'success'];
-    }
-
-    /**
-     * @param $path String
-     * @param $filename String
-     */
-    private function createThumbnail($path, $filename)
-    {
-        $img = GImage::open($path.'/'.$filename);
-        $img->zoomCrop(
-            App::module('gallery')->config('images.thumbnail_width'),
-            App::module('gallery')->config('images.thumbnail_height'))
-            ->save($path.'/thumbnails/tn_'.$filename,
-                (int) App::module('gallery')->config('images.image_quality'));
     }
 
     /**

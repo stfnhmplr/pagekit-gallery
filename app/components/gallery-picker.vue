@@ -8,7 +8,7 @@
                     <h2>{{ 'Add Gallery' | trans }}</h2>
                 </div>
 
-                <div v-if="!galleries.length" class="uk-form-row">
+                <div v-if="!galleries || !galleries.length" class="uk-form-row">
                     <p>{{ 'Please add and publish a gallery first!' | trans }}</p>
                 </div>
                 <div v-else>
@@ -31,10 +31,11 @@
                             <input id="form-gallery-link" type="checkbox" v-model="gallery.showLink">
                         </div>
                     </div>
+                    <p v-show="error" class="uk-alert uk-alert-danger">{{ error | trans }}</p>
                 </div>
                 <div class="uk-modal-footer uk-text-right">
                     <button class="uk-button uk-button-link uk-modal-close" type="button">{{ 'Cancel' | trans }}</button>
-                    <button v-if="galleries.length" class="uk-button uk-button-link" type="submit">{{ 'Update' | trans }}</button>
+                    <button v-if="galleries && galleries.length" class="uk-button uk-button-link" type="submit">{{ 'Update' | trans }}</button>
                 </div>
 
             </form>
@@ -53,7 +54,8 @@
                     id: '',
                     showLink: true,
                     limit: ''
-                }
+                },
+                error: ''
             }
         },
 
@@ -73,9 +75,14 @@
                 this.$destroy(true);
             },
             update: function () {
+                if (!this.gallery.id) {
+                    this.$set('error', 'Please choose a gallery first');
+                    return;
+                }
                 this.$refs.modal.close();
                 this.$emit('select', this.gallery);
+                this.$set('error', '');
             }
         }
-    };
+    }
 </script>

@@ -31,25 +31,24 @@
             <h3 class="uk-h1 uk-text-muted uk-text-center" v-if="!gallery.images">{{ 'No images found' | trans }}</h3>
             <div class="uk-grid uk-grid-width-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-5" v-else data-uk-grid-margin>
                 <div class="uk-text-center" v-for="image in gallery.images">
-                    <img class="uk-thumbnail pointer" :src="$url('storage/shw-gallery/thumbnails/tn_' + image.filename)" @click="editImage(image)"/>
+                    <img class="uk-thumbnail pointer" :src="$url(image.thumbnail)" @click="editImage(image)"/>
                 </div>
             </div>
-            <div v-if="gallery.images" class="uk-text-center uk-margin-large-top">
-                <button class="uk-button" @click.prevent="rebuildThumbnails">{{ 'Rebuild thumbnails' | trans }}</button>
-            </div>
         </div>
+        <!-- image edit modal -->
         <div class="uk-modal" v-el:modal>
             <div class="uk-modal-dialog" v-if="img">
 
                 <div class="uk-modal-header uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
                     <h2 class="uk-margin-small-bottom">{{ 'Edit image' | trans }}</h2>
                     <ul class="uk-subnav pk-subnav-icon uk-margin-left">
-                    <li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete image' | trans}}" data-uk-tooltip="{delay: 500}" @click.prevent="deleteImage(img)" v-confirm="'Delete Image?'"></a></li>
+                        <li><a class="pk-icon-refresh pk-icon-hover" title="{{ 'Rotate image' | trans}}" data-uk-tooltip="{delay: 500}" @click.prevent="rotateImage(img)"></a></li>
+                        <li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete image' | trans}}" data-uk-tooltip="{delay: 500}" @click.prevent="deleteImage(img)" v-confirm="'Delete Image?'"></a></li>
                     </ul>
                 </div>
 
                 <div class="uk-form-row">
-                    <img class="uk-thumbnail" :src="$url('storage/shw-gallery/' + img.filename)" />
+                    <img v-el:image class="uk-thumbnail" :src="$url(img.image)" />
                 </div>
 
                 <div class="uk-form-row">
@@ -60,8 +59,8 @@
                 </div>
 
                 <div class="uk-modal-footer uk-text-right">
-                    <button class="uk-button uk-button-link uk-modal-close" type="button">{{ 'Cancel' | trans }}</button>
-                    <button class="uk-button uk-button-link" @click.prevent="saveImage(img)">{{ 'Update' | trans }}</button>
+                    <button class="uk-button uk-button-link uk-modal-close" @click.prevent="cancelEdit" type="button">{{ 'Cancel' | trans }}</button>
+                    <button class="uk-button uk-button-link" @click.prevent="saveImage">{{ 'Update' | trans }}</button>
                 </div>
 
             </div>
@@ -112,7 +111,8 @@
                 form: {},
                 images: [],
                 progress: 0,
-                maxSize: ''
+                maxSize: '',
+                img: {}
             }
         },
 
@@ -141,6 +141,27 @@
                 });
             },
 
+            rotateImage: function () {
+
+                if (this.img.rotate && this.img.rotate < 271) {
+                    this.$set('img.rotate', this.img.rotate + 90);
+                } else {
+                    this.$set('img.rotate', 90);
+                }
+
+                let ratio = this.$els.image.width/this.$els.image.height;
+                ratio = ratio > 1 ? 1/ratio : ratio;
+                if (this.img.rotate === 180 || this.img.rotate === 360) {
+                    ratio = 1;
+                }
+
+                this.$els.image.setAttribute('style',
+                    '-moz-transform: rotate('+ this.img.rotate +'deg) scale('+ ratio +');' +
+                    '-o-transform: rotate('+ this.img.rotate +'deg) scale('+ ratio +');' +
+                    '-webkit-transform: rotate('+ this.img.rotate +'deg) scale('+ ratio +');' +
+                    'transform: rotate('+ this.img.rotate +'deg) scale('+ ratio +');');
+            },
+
             editImage: function (img) {
                 if (!this.modal) {
                     this.modal = UIkit.modal(this.$els.modal);
@@ -149,20 +170,18 @@
                 this.modal.show();
             },
 
-            saveImage: function(img) {
-                this.$resource('api/gallery/image{/id}').save({ id: img.id }, { image: img }).then(function () {
+            saveImage: function() {
+                this.$resource('api/gallery/image{/id}').save({ id: this.img.id }, { image: this.img }).then(function () {
+                    this.$els.image.setAttribute('style', '');
+                    this.$set('img', '');
                     this.modal.hide();
                     this.$notify(this.$trans('Image saved'));
                 });
             },
 
-            rebuildThumbnails () {
-                this.$resource('api/gallery/rebuild').update({ id: this.gallery.id }).then(function (res) {
-                    this.$notify(this.$trans('Thumbnails rebuilded. Please reload the page to see changes!'));
-                });
-            },
-
             cancelEdit: function () {
+                this.$els.image.setAttribute('style', '');
+                this.$set('img', '');
                 this.modal.hide();
             },
 
@@ -172,9 +191,6 @@
                     this.form.append('images[' + key + ']', this.files[key]);
                 }
 
-                //only supported by chrome and firefox
-                //this.form.delete('images[item]');
-                //this.form.delete('images[length]');
                 this.form.append('id', this.gallery.id);
                 this.$http.post('api/gallery/upload', this.form, {
                     upload: {

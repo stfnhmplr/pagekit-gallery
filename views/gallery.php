@@ -1,4 +1,7 @@
-<?php $view->style('gallery', 'gallery:assets/css/gallery.css', 'uikit')?>
+<?php
+    $view->style('gallery', 'gallery:assets/css/gallery.css', 'uikit');
+    $view->script('gallery', 'gallery:app/bundle/gallery.js', 'uikit');
+?>
 
 <?php if ($shwGallery->config('gallery.back_button')): ?>
     <a class="uk-button" href="<?= $view->url('@gallery') ?>"><?= __('back') ?></a>
@@ -16,7 +19,7 @@
     <?php foreach ($images as $image): ?>
     <li class="uk-text-center">
         <a href="<?= $view->url()->getStatic('storage/shw-gallery/'.$image->filename) ?>" data-uk-lightbox="{group:'gallery'}" title="<?= $image->title ?>">
-            <img src="<?= $view->url()->getStatic('storage/shw-gallery/thumbnails/tn_'.$image->filename) ?>" alt="<?=$image->title?>" />
+            <img src="<?= $view->url()->getStatic($image->getThumbnail()) ?>" alt="<?=$image->title?>" />
         </a>
     </li>
     <?php endforeach ?>
