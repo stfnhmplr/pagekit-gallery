@@ -93,5 +93,5 @@ return [
     'Rebuild thumbnails'                                                 => 'Thumbnails neu erstellen',
     'Rotate image'                                                       => 'Bild drehen',
     'Cache cleared.'                                                     => 'Cache gelöscht.',
-    'Please choose a gallery first'                                      => 'Bitte wähle zuerst eine Galerie aus'
+    'Please choose a gallery first'                                      => 'Bitte wähle zuerst eine Galerie aus',
 ];
