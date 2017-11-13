@@ -1,7 +1,7 @@
 {
     "name": "shw/gallery",
     "type": "pagekit-extension",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "title": "Gallery",
     "description": "A extension to manage your pictures",
     "license": "MIT",

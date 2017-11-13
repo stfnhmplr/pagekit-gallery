@@ -10,7 +10,7 @@
         <div class="uk-text-center">
             <h2 class="uk-h3"><?= $gallery->title ?></h2>
             <a class="uk-thumbnail uk-overlay-toggle" href="<?= $view->url('@gallery/id', ['id' => $gallery->id]) ?>">
-                <img src="<?= $view->url()->getStatic('storage/shw-gallery/thumbnails/tn_'.$gallery->image->filename) ?>" alt="" />
+                <img src="<?= $view->url()->getStatic($gallery->image->getThumbnail()) ?>" alt="" />
             </a>
         </div>
     <?php endforeach; ?>

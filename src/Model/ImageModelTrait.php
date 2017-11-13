@@ -34,7 +34,7 @@ trait ImageModelTrait
         }
 
         return GImage::open('storage/shw-gallery/'.$this->filename)
-            ->setCacheDir('storage/shw-gallery/cache')
+            //->setCacheDir(App::path().'/storage/shw-gallery/cache')
             ->zoomCrop($width, $height)
             ->guess((int) App::module('gallery')->config('images.image_quality'));
     }
@@ -55,7 +55,7 @@ trait ImageModelTrait
         }
 
         return GImage::open('storage/shw-gallery/'.$this->filename)
-            ->setCacheDir('storage/shw-gallery/cache')
+            //->setCacheDir(App::path().'/storage/shw-gallery/cache')
             ->cropResize($width, $height)
             ->guess((int) App::module('gallery')->config('images.image_quality'));
     }

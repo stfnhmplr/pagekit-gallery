@@ -231,7 +231,7 @@ class GalleryApiController
      */
     public function clearCacheAction()
     {
-        GarbageCollect::dropOldFiles('storage/shw-gallery/cache', 0);
+        GarbageCollect::dropOldFiles(App::path().'/storage/shw-gallery/cache', 0);
 
         return ['message' => 'success'];
     }

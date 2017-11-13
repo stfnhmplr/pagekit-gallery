@@ -18,7 +18,7 @@
 <ul class="uk-grid uk-grid-width-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-5" data-uk-grid-margin>
     <?php foreach ($images as $image): ?>
     <li class="uk-text-center">
-        <a href="<?= $view->url()->getStatic('storage/shw-gallery/'.$image->filename) ?>" data-uk-lightbox="{group:'gallery'}" title="<?= $image->title ?>">
+        <a href="<?= $view->url()->getStatic($image->getImage()) ?>" data-uk-lightbox="{group:'gallery'}" title="<?= $image->title ?>">
             <img src="<?= $view->url()->getStatic($image->getThumbnail()) ?>" alt="<?=$image->title?>" />
         </a>
     </li>

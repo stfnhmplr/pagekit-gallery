@@ -1,4 +1,8 @@
 # Changelog
+
+## 0.3.1
+- fixed image caching
+
 ## 0.3.0
 - added image caching
 - added function to rotate images
